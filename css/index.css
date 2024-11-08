@@ -7,7 +7,7 @@
 /* Header */
 #Header{
     min-height:150px;
-    background-color:black;
+    background-color:hsla(0, 0%, 0%, 0.911);
     display:flex;
     max-width:100%;
     flex-direction: column;
@@ -178,4 +178,154 @@
     border-top:dashed grey 1px;
     margin-top:10px;
     padding-top:15px;
+}
+
+
+/*Login*/
+.container_login
+{
+    display:none;
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color: white;
+    border:solid black 3px;
+    max-width:800px;
+    width:100%;
+    border-radius:10px;
+    z-index:10000;
+}
+.details_login
+{
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+.title_login
+{
+    display:flex;
+    justify-content: space-between;
+}
+.title_login button
+{
+    border:none;
+    font-weight: bold;
+    font-size:20px;
+    color:black;
+    cursor: pointer;
+
+}
+.details_login span
+{
+    font-size:40px;
+    font-weight:bold;
+    text-decoration: underline;
+}
+
+.details_login label
+{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.details_login input[name="ten_login"] , .details_login input[name="pass_login"]
+{
+    border:solid black 1px;
+    border-radius:3px;
+    margin-top:5px;
+    font-size:20px;
+}
+
+.details_login input[type="submit"]
+{
+    background-color:yellow;
+    font-size:20px;
+    width:100%;
+    cursor:pointer;
+}
+
+.username-error , .password-error
+{
+    color:red;
+    display:none;
+    font-size:15px;
+}
+
+.toSignup
+{
+    display:flex;
+    justify-content: center;
+    margin-top:10px;
+}
+
+.toSignup a
+{
+    color:hsl(61, 40%, 50%);
+}
+
+/*Signup*/
+.container_signup
+{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color: white;
+    border:solid black 3px;
+    max-width:800px;
+    width:100%;
+    border-radius:10px;
+    z-index:10000;
+}
+.details_signup
+{
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+.title_signup
+{
+    display:flex;
+    justify-content: space-between;
+}
+.title_signup button
+{
+    border:none;
+    font-weight: bold;
+    font-size:20px;
+    color:black;
+    cursor: pointer;
+
+}
+.details_signup span
+{
+    font-size:40px;
+    font-weight:bold;
+    text-decoration: underline;
+}
+
+.details_signup label
+{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.details_signup input[name="ten_signup"] , .details_signup input[name="pass_signup"]
+{
+    border:solid black 1px;
+    border-radius:3px;
+    margin-top:5px;
+    font-size:20px;
+}
+
+.details_signup input[type="submit"]
+{
+    background-color:yellow;
+    font-size:20px;
+    width:100%;
+    cursor:pointer;
 }

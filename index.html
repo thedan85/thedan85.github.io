@@ -3,23 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Index</title>
+        <title>Watch Store</title>
         <link rel="stylesheet" href = "css/index.css">
     </head>
     <body>
+        <!-- Header -->
         <div id="Header">
             <div class="top-container">
                 <div class="topright">
                     <ul>
-                        <li><img src="images/icons/user-solid.svg" alt="" class="icon"></li>
-                        <li><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></li>
+                        <li><a href="#"><img src="images/icons/user-solid.svg" alt="" class="icon"></a></li>
+                        <li><a href="cart.html"><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="bottom-container">
                 <div class="botleft">
-                    <h1>BRANDNAME</h1>
+                    <h1>Watch Store</h1>
                 </div>
                 <div class="botright">
                     <ul>
@@ -32,6 +33,7 @@
             </div>
         </div>
 
+        <!--Slideshow-->
         <div class="container">
             <div class="slideshow">
                 <img src="images/slideshow/001.jfif" class="active">
@@ -40,6 +42,7 @@
             </div>
         </div>
 
+        <!--San Pham-->
         <div class="mid-container">
             <div class="midtop">
                 <span>Sản Phẩm</span>
@@ -50,10 +53,11 @@
             </div>
         </div>
         
+        <!--Footer-->
         <div id="footer-container">
             <div class="footer-info">
                 <div class="footer-brand">
-                    <h1>BRANDNAME</h1>
+                    <h1>Watch Store</h1>
                 </div>
 
                 <div class="footer-address">
@@ -67,9 +71,67 @@
 
             </div>
             <div class="copyright">
-                2024 © Copyright BRANDNAME. All rights reserved. 
+                2024 © Copyright Watch Store. All rights reserved. 
             </div>
         </div>
+
+        <!--Login-->
+        <div class="container_login">
+            <form>
+                <div class="details_login">
+                    <div class="title_login">
+                        <span>Đăng nhập</span>
+                        <button value="close">X</button>
+                    </div>
+                    
+                    <label for="ten_login">Tên đăng nhập</label>
+                    <input type="text" placeholder="Nhập tên đăng nhập" name="ten_login" id="ten_login">
+                    <div class="username-error">Tên đăng nhập không được để trống!</div>
+                    
+                    <label for="pass_login">Mật khẩu</label>
+                    <input type="password" placeholder="Nhập mật khẩu" name="pass_login" id="pass_login">
+                    <div class="password-error">Sai thông tin đăng nhập.</div>
+                    
+                    <input type="submit" id="submit_login" value="Đăng nhập">
+
+                    <div class="toSignup">
+                        <b>Bạn chưa có tài khoản?</b>
+                        <a href="#">Đăng ký</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--Signup-->
+        <div class="container_signup">
+            <form>
+                <div class="details_signup">
+                    <div class="title_signup">
+                        <span>Đăng ký</span>
+                        <button value="close">X</button>
+                    </div>
+                    
+                    <label for="hovaten">Họ và tên</label>
+                    <input type="text" placeholder="Nhập họ và tên" name="hovaten" id="hovaten">
+
+                    <label for="diachi">Địa chỉ</label>
+                    <input type="text" placeholder="Nhập địa chỉ" name="diachi" id="diachi">
+
+                    <label for="sodienthoai">Số điện thoại</label>
+                    <input type="tel" placeholder="Nhập số điện thoại" name="sodienthoai" id="sodienthoai" pattern="[0-9]{10}">
+
+                    <label for="ten_signup">Tên đăng ký</label>
+                    <input type="text" placeholder="Nhập tên đăng ký" name="ten_signup" id="ten_signup">
+                    
+                    <label for="pass">Mật khẩu</label>
+                    <input type="password" placeholder="Nhập mật khẩu" name="pass_signup" id="pass_signup">
+
+                    <label for="repass">Nhập lại mật khẩu</label>
+                    <input type="password" placeholder="Nhập lại mật khẩu" name="repass" id="repass">
+                    
+                    <input type="submit" id="submit_signup" value="Đăng ký">
+                </div>
+            </form>
     </body>
 
     <script src="js/index.js"></script>
