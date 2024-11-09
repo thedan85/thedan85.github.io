@@ -25,20 +25,23 @@ const profile_icon = document.getElementsByClassName("icon");
 const container_login = document.getElementsByClassName("container_login");
 const button_close = document.querySelectorAll("button[value='close']");
 
-profile_icon[0].onclick =function showLogin()
+function showLogin()
 {
 
     container_login[0].style.display = "block";
     document.body.style.opacity = "0.8";
 }
 
+profile_icon[0].onclick = showLogin;
 
 
-button_close[0].onclick = function closeLogin()
+function closeLogin()
 {
     container_login[0].style.display = "none";
     document.body.style.opacity = "1";
 }
+
+button_close[0].onclick = closeLogin;
 
 //Login-Error
 const username = document.getElementById("ten_login");
@@ -104,8 +107,9 @@ const diachi_error = document.querySelector(".diachi-error");
 const sodienthoai_error = document.querySelector(".sodienthoai-error");
 const username_signup_error = document.querySelector(".username-signup-error");
 const pass_signup_error = document.querySelector(".pass-signup-error");
-const repass_signup_error = document.querySelector(".repass-signup-error");
+const repass_signup_error = document.querySelector(".repass-error");
 const submit_signup = document.getElementById("submit_signup");
+const button_login = document.querySelector(".toLogin a");
 
 function checkSignup()
 {
@@ -184,10 +188,71 @@ function checkSignup()
         repass_signup_error.style.display = "block";
     }
 
-    if(repass_signup_error.value!=""&&pass_signup.value!=repass_signup_error.value)
+    if(repass_signup.value!=pass_signup.value)
     {
         repass_signup_error.style.display = "block";
     }
 }
 
 submit_signup.addEventListener("click" , checkSignup);
+
+
+button_login.addEventListener("click" , function toLogin()
+{
+    container_signup[0].style.display = "none";
+    container_login[0].style.display = "block";
+    document.body.style.opacity = "0.8";
+});
+
+
+//Products
+var productArray = [
+    {productId:10000, brandid:'casio', img:'images/products/1.jpg', name:'Casio - Nam MTP-1374L-1AVDF', price:1129000}
+    ,{productId:10001, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1200WHD-1AVDF', price:1702000}
+    ,{productId:10002, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1172L-1AVDF', price:1361000},
+]
+
+function botright()
+{
+    var brand =[
+        {brandid:'casio', brandname:"Casio"}
+        ,{brandid:'citizen', brandname:"Citizen"},
+        {brandid:'rolex', brandname:"Rolex"},
+        {brandid:'timex', brandname:"Timex"},
+    ]
+
+    var s="";
+    for(i=0 ; i < brand.length ; i++)
+    {
+        var a = '<a href="#"><li id='+brand[i].brandname+'onclick="hienthisanphamtheotheloai(this);">'+brand[i].brandname+'</li></a>';
+        s+=a;
+    
+        s='<ul>+s+</ul>';
+        document.getElementsByClassName("botright")[0].innerHTML = s;
+    }
+}
+
+function hienthisanphamtheotheloai(obj)
+        {
+            var s="";
+            for(i=0;i<productArray.length;i++)
+            {
+                if(productArray[i].brandid==obj.id)
+                {   
+                    s=s+`<div class="item">
+                        <img id="myimg" src="${productArray[i].img}"  width="100%">
+                        <div>Ma SP: "${productArray[i].productId}</div>
+                        <div>Tên SP: "${productArray[i].name}</div>
+                        <div>Giá SP: "${productArray[i].price}</div>
+                        <div>
+                            <span>Mua</span>
+                            <span>Chi tiết</span>
+                            <span onclick="change();">Thực hiện</span>
+                        </div>
+                    </div>`;
+                }
+            }
+
+                document.getElementById("content").innerHTML=s;
+        }
+
