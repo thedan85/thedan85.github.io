@@ -270,7 +270,7 @@
 {
     display:none;
     position:fixed;
-    top:50%;
+    top:30%;
     left:50%;
     transform:translate(-50%,-50%);
     background-color: white;
@@ -284,13 +284,26 @@
 {
     padding:10px;
     display:flex;
-    flex-direction: column;
-    gap:20px;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.input-signup
+{
+    margin-bottom:10px;
+    width:calc(50% - 70px);
 }
 .title_signup
 {
     display:flex;
     justify-content: space-between;
+}
+.signup
+{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content: space-around;
 }
 .title_signup button
 {
@@ -301,7 +314,7 @@
     cursor: pointer;
 
 }
-.details_signup span
+.container_signup span
 {
     font-size:40px;
     font-weight:bold;
@@ -314,7 +327,7 @@
     font-weight:bold;
 }
 
-.details_signup input[name="ten_signup"] , .details_signup input[name="pass_signup"]
+.input-signup input
 {
     border:solid black 1px;
     border-radius:3px;
@@ -328,4 +341,11 @@
     font-size:20px;
     width:100%;
     cursor:pointer;
+}
+
+.hovaten-error , .diachi-error , .sodienthoai-error , .username-signup-error , .pass-signup-error , .repass-error
+{
+    color:red;
+    display:none;
+    font-size:15px;
 }
