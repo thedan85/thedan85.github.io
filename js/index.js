@@ -245,7 +245,7 @@ function hienthisanpham() {
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
         s += `<div class="item">
-            <img id="myimg" src="${productArray[i].img}"  width="100%">
+            <img id="myimg" src="${productArray[i].img}"  width="30%">
             <div>Tên SP: "${productArray[i].name}"</div>
             <div>Giá SP: "${productArray[i].price}"</div>
             <div>
@@ -284,7 +284,7 @@ function trang(tranghientai)
     for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
     {
         s+=`<div class="item">
-        <img id="myimg" src="${productArray[i].img}"  width="100%">
+        <img id="myimg" src="${productArray[i].img}"  width="30%">
         <div>Tên SP: "${productArray[i].name}"</div>
         <div>Giá SP: "${productArray[i].price}"</div>
         <div>
