@@ -246,7 +246,6 @@ function hienthisanpham() {
       if (productArray[i].brandid == obj.id) {
         s += `<div class="item">
             <img id="myimg" src="${productArray[i].img}"  width="100%">
-            <div>Ma SP: "${productArray[i].productId}"</div>
             <div>Tên SP: "${productArray[i].name}"</div>
             <div>Giá SP: "${productArray[i].price}"</div>
             <div>
@@ -286,7 +285,6 @@ function trang(tranghientai)
     {
         s+=`<div class="item">
         <img id="myimg" src="${productArray[i].img}"  width="100%">
-        <div>Ma SP: "${productArray[i].productId}"</div>
         <div>Tên SP: "${productArray[i].name}"</div>
         <div>Giá SP: "${productArray[i].price}"</div>
         <div>
