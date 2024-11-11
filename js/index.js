@@ -226,11 +226,11 @@ var brand = [
     { brandid: 'rolex', brandname: "Rolex" },
     { brandid: 'timex', brandname: "Timex" },
   ]
-//Phan Trang
 const sp1trang = 4;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
 
-function phantrang()
+//phan trang
+function phantrang(tongsotrang)
 {
     var s = "";
     for(i=1;i<=tongsotrang;i++)
@@ -260,9 +260,12 @@ function trang(tranghientai)
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    phantrang();
+    phantrang(tongsotrang);
+    trang(1);
 });
 
+
+//san pham theo the loai
 function hienthisanpham() {
   
     var s = "";
@@ -276,6 +279,7 @@ function hienthisanpham() {
   }
   
   function hienthisanphamtheotheloai(obj) {
+    var tongsosp = 0;
     var s = "";
     document.getElementsByClassName("miditem")[0].innerHTML = ""; 
     for (i = 0; i < productArray.length; i++) {
@@ -290,9 +294,14 @@ function hienthisanpham() {
               <span onclick="change();">Thực hiện</span>
             </div>
           </div>`;
+        tongsosp++;
       }
     }
+    let tongsotrang = Math.ceil(tongsosp / sp1trang);
+    phantrang(tongsotrang);
     document.getElementsByClassName("miditem")[0].innerHTML = s;
+    trang(1);
+    
 }
 
 document.addEventListener("DOMContentLoaded", function() {
