@@ -278,6 +278,28 @@ function hienthisanpham() {
     document.getElementsByClassName("botright")[0].innerHTML = s;
   }
   
+  function trangphanloai(tranghientai,tongsosp,obj)
+  {
+    var s="";
+    for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<tongsosp;i++)
+    {
+        if(productArray[i].brandid == obj.id)
+        {
+            s+=`<div class="item">
+            <img id="myimg" src="${productArray[i].img}"  width="30%">
+            <div>Tên SP: "${productArray[i].name}"</div>
+            <div>Giá SP: "${productArray[i].price}"</div>
+            <div>
+              <span>Mua</span>
+              <span>Chi tiết</span>
+              <span onclick="change();">Thực hiện</span>
+            </div>
+          </div>`;
+        }    
+    }
+
+    document.getElementsByClassName("miditem")[0].innerHTML = s;
+  }
   function hienthisanphamtheotheloai(obj) {
     var tongsosp = 0;
     var s = "";
@@ -300,10 +322,10 @@ function hienthisanpham() {
     let tongsotrang = Math.ceil(tongsosp / sp1trang);
     phantrang(tongsotrang);
     document.getElementsByClassName("miditem")[0].innerHTML = s;
-    trang(1);
-    
+    trangphanloai(1,tongsosp,obj);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     hienthisanpham();
 });
+
