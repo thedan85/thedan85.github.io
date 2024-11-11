@@ -326,3 +326,40 @@ document.addEventListener("DOMContentLoaded", function() {
     hienthisanpham();
 });
 
+//search
+const searchInput = document.getElementById("search-input");
+let resultSearchArray = []; // declare the variable outside of the search function
+
+const search = function() {
+  const searchResult = searchInput.value.toLowerCase();
+  resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
+  const tongsotrang = Math.ceil(resultSearchArray.length / sp1trang);
+  let temp ="";
+  for (let i = 1; i <= tongsotrang; i++) {
+    temp+=`<div class="currentPage" onclick="trangSearch(${i})">${i}</div>`;
+  }
+  trangSearch(1);
+  document.getElementsByClassName("midbottom")[0].innerHTML = temp;
+};
+
+searchInput.addEventListener("input", search);
+
+function trangSearch(tranghientai) {
+  const start = (tranghientai - 1) * sp1trang;
+  const end = start + sp1trang;
+  const productsToRender = resultSearchArray.slice(start, end);
+  let s = "";
+  for (let i = 0; i < productsToRender.length; i++) {
+    s += `<div class="item">
+            <img id="myimg" src="${productsToRender[i].img}" width="30%">
+            <div>Tên SP: "${productsToRender[i].name}"</div>
+            <div>Giá SP: "${productsToRender[i].price}"</div>
+            <div>
+              <span>Mua</span>
+              <span>Chi tiết</span>
+              <span onclick="change();">Thực hiện</span>
+            </div>
+          </div>`;
+  }
+  document.getElementsByClassName("miditem")[0].innerHTML = s;
+}
