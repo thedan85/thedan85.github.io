@@ -227,7 +227,7 @@
 {
     display:none;
     position:fixed;
-    top:30%;
+    top:50%;
     left:50%;
     transform:translate(-50%,-50%);
     background-color: white;
@@ -242,7 +242,7 @@
     padding:10px;
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:10px;
 }
 .title_login
 {
