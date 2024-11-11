@@ -217,6 +217,8 @@ var productArray = [
     ,{productId:10002, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1172L-1AVDF', price:1361000},
     {productId:10003, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1208WHD-1AVDF', price:1908000}
     ,{productId:10004, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1272L-1AVDF', price:1165000},
+    {productId:10005, brandid:'citizen', img:'images/products/4.jpg', name:'Đồng Hồ Citizen - Nữ EU6060-55D', price:3391000},
+    {productId:10006, brandid:'citizen', img:'images/products/5.jpg', name:'Đồng Hồ Citizen - Nữ EM0589-88X', price:7293000}
 
 ]
 
@@ -278,15 +280,13 @@ function hienthisanpham() {
     document.getElementsByClassName("botright")[0].innerHTML = s;
   }
   
-  function trangphanloai(tranghientai,tongsosp,obj)
-  {
-    var s="";
-    for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<tongsosp;i++)
-    {
-        if(productArray[i].brandid == obj.id)
-        {
-            s+=`<div class="item">
-            <img id="myimg" src="${productArray[i].img}"  width="30%">
+  function trangphanloai(tranghientai, tongsosp, obj) {
+    var s = "";
+    for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < tongsosp; i++) {
+      if (productArray[i].brandid == obj.id) {
+        s += `
+          <div class="item">
+            <img id="myimg" src="${productArray[i].img}" width="30%">
             <div>Tên SP: "${productArray[i].name}"</div>
             <div>Giá SP: "${productArray[i].price}"</div>
             <div>
@@ -294,16 +294,15 @@ function hienthisanpham() {
               <span>Chi tiết</span>
               <span onclick="change();">Thực hiện</span>
             </div>
-          </div>`;
-        }    
+          </div>
+        `;
+      }
     }
-
     document.getElementsByClassName("miditem")[0].innerHTML = s;
   }
   function hienthisanphamtheotheloai(obj) {
     var tongsosp = 0;
     var s = "";
-    document.getElementsByClassName("miditem")[0].innerHTML = ""; 
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
         s += `<div class="item">
@@ -322,7 +321,7 @@ function hienthisanpham() {
     let tongsotrang = Math.ceil(tongsosp / sp1trang);
     phantrang(tongsotrang);
     document.getElementsByClassName("miditem")[0].innerHTML = s;
-    trangphanloai(1,tongsosp,obj);
+
 }
 
 document.addEventListener("DOMContentLoaded", function() {
