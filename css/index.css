@@ -126,6 +126,8 @@
 
 .miditem
 {
+    margin-top:10px;
+    margin-bottom:10px;
     display:flex;
     width:100%;
     flex-wrap: wrap;
@@ -146,7 +148,31 @@
     margin-left:5px;
     font-weight:bold;
     font-size:1,5vw;
+    cursor:pointer;
 }
+
+.midbottom
+{
+
+    display:flex;
+    justify-content: center;
+    column-gap:20px;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.currentPage
+{
+    font-size:2vw;
+    font-weight:bold;
+    border:solid black 2px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    background-color:blue;
+}
+
 
 
 /*Footer*/
@@ -255,7 +281,8 @@
 
 .details_login input[type="submit"]
 {
-    background-color:yellow;
+    background-color:blue;
+    font-weight:bold;
     font-size:20px;
     width:100%;
     cursor:pointer;
@@ -277,7 +304,7 @@
 
 .toSignup a
 {
-    color:hsl(61, 40%, 50%);
+    color:blue;
 }
 
 /*Signup*/
@@ -352,7 +379,8 @@
 
 .details_signup input[type="submit"]
 {
-    background-color:yellow;
+    background-color:blue;
+    font-weight:bold;
     font-size:20px;
     width:100%;
     cursor:pointer;
@@ -367,5 +395,5 @@
 
 .toLogin a
 {
-    color:hsl(61, 40%, 50%);
+    color:blue;
 }

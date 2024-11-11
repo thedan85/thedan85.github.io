@@ -117,6 +117,10 @@ function checkSignup()
     {
         event.preventDefault();
     }
+    else if((sodienthoai.value.length!=10&&sodienthoai.pattern!="0[0-9]{9}")&&repass_signup.value!=pass_signup.value)
+    {
+        event.preventDefault();
+    }
     if(hovaten.value=="")
     {
         hovaten_error.style.display = "block";
@@ -211,15 +215,19 @@ var productArray = [
     {productId:10000, brandid:'casio', img:'images/products/1.jpg', name:'Casio - Nam MTP-1374L-1AVDF', price:1129000}
     ,{productId:10001, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1200WHD-1AVDF', price:1702000}
     ,{productId:10002, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1172L-1AVDF', price:1361000},
+    {productId:10003, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1208WHD-1AVDF', price:1908000}
+    ,{productId:10004, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1272L-1AVDF', price:1165000},
+
 ]
 
+var brand = [
+    { brandid: 'casio', brandname: "Casio" },
+    { brandid: 'citizen', brandname: "Citizen" },
+    { brandid: 'rolex', brandname: "Rolex" },
+    { brandid: 'timex', brandname: "Timex" },
+  ]
+
 function hienthisanpham() {
-    var brand = [
-      { brandid: 'casio', brandname: "Casio" },
-      { brandid: 'citizen', brandname: "Citizen" },
-      { brandid: 'rolex', brandname: "Rolex" },
-      { brandid: 'timex', brandname: "Timex" },
-    ]
   
     var s = "";
     for (i = 0; i < brand.length; i++) {
@@ -233,7 +241,7 @@ function hienthisanpham() {
   
   function hienthisanphamtheotheloai(obj) {
     var s = "";
-    document.getElementsByClassName("miditem")[0].innerHTML = ""; // clear the previous content
+    document.getElementsByClassName("miditem")[0].innerHTML = ""; 
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
         s += `<div class="item">
@@ -255,4 +263,42 @@ function hienthisanpham() {
 
 document.addEventListener("DOMContentLoaded", function() {
     hienthisanpham();
+});
+
+//Phan Trang
+const sp1trang = 4;
+let tongsotrang = Math.ceil(productArray.length/sp1trang);
+
+function phantrang()
+{
+    var s = "";
+    for(i=1;i<=tongsotrang;i++)
+    {
+        s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
+    }
+    document.getElementsByClassName("midbottom")[0].innerHTML = s;
+}
+
+function trang(tranghientai)
+{
+    var s="";
+    for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
+    {
+        s+=`<div class="item">
+        <img id="myimg" src="${productArray[i].img}"  width="100%">
+        <div>Ma SP: "${productArray[i].productId}"</div>
+        <div>Tên SP: "${productArray[i].name}"</div>
+        <div>Giá SP: "${productArray[i].price}"</div>
+        <div>
+          <span>Mua</span>
+          <span>Chi tiết</span>
+          <span onclick="change();">Thực hiện</span>
+        </div>
+      </div>`;
+    }
+    document.getElementsByClassName("miditem")[0].innerHTML = s;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    phantrang();
 });
