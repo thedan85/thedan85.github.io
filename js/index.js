@@ -226,44 +226,6 @@ var brand = [
     { brandid: 'rolex', brandname: "Rolex" },
     { brandid: 'timex', brandname: "Timex" },
   ]
-
-function hienthisanpham() {
-  
-    var s = "";
-    for (i = 0; i < brand.length; i++) {
-      var a = '<a href="#"><li id="' + brand[i].brandid + '" onclick="hienthisanphamtheotheloai(this);">' + brand[i].brandname + '</li></a>';
-      s += a;
-    }
-  
-    s = '<ul>' + s + '</ul>';
-    document.getElementsByClassName("botright")[0].innerHTML = s;
-  }
-  
-  function hienthisanphamtheotheloai(obj) {
-    var s = "";
-    document.getElementsByClassName("miditem")[0].innerHTML = ""; 
-    for (i = 0; i < productArray.length; i++) {
-      if (productArray[i].brandid == obj.id) {
-        s += `<div class="item">
-            <img id="myimg" src="${productArray[i].img}"  width="30%">
-            <div>Tên SP: "${productArray[i].name}"</div>
-            <div>Giá SP: "${productArray[i].price}"</div>
-            <div>
-              <span>Mua</span>
-              <span>Chi tiết</span>
-              <span onclick="change();">Thực hiện</span>
-            </div>
-          </div>`;
-      }
-    }
-  
-    document.getElementsByClassName("miditem")[0].innerHTML = s;
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    hienthisanpham();
-});
-
 //Phan Trang
 const sp1trang = 4;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
@@ -299,4 +261,40 @@ function trang(tranghientai)
 
 document.addEventListener("DOMContentLoaded", function() {
     phantrang();
+});
+
+function hienthisanpham() {
+  
+    var s = "";
+    for (i = 0; i < brand.length; i++) {
+      var a = '<a href="#"><li id="' + brand[i].brandid + '" onclick="hienthisanphamtheotheloai(this);">' + brand[i].brandname + '</li></a>';
+      s += a;
+    }
+  
+    s = '<ul>' + s + '</ul>';
+    document.getElementsByClassName("botright")[0].innerHTML = s;
+  }
+  
+  function hienthisanphamtheotheloai(obj) {
+    var s = "";
+    document.getElementsByClassName("miditem")[0].innerHTML = ""; 
+    for (i = 0; i < productArray.length; i++) {
+      if (productArray[i].brandid == obj.id) {
+        s += `<div class="item">
+            <img id="myimg" src="${productArray[i].img}"  width="30%">
+            <div>Tên SP: "${productArray[i].name}"</div>
+            <div>Giá SP: "${productArray[i].price}"</div>
+            <div>
+              <span>Mua</span>
+              <span>Chi tiết</span>
+              <span onclick="change();">Thực hiện</span>
+            </div>
+          </div>`;
+      }
+    }
+    document.getElementsByClassName("miditem")[0].innerHTML = s;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    hienthisanpham();
 });
