@@ -232,20 +232,23 @@ const sp1trang = 4;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
 
 //phan trang
-function phantrang(tongsotrang)
+function phantrang(tongsotrang,isMainList)
 {
     var s = "";
-    for(i=1;i<=tongsotrang;i++)
+    if(isMainList)
     {
-        s+='<div class="currentPage" onclick="trang('+i+',true)">'+i+'</div>';
+        for(i=1;i<=tongsotrang;i++)
+        {
+            s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
+        }
     }
     document.getElementsByClassName("midbottom")[0].innerHTML = s;
+    
 }
 
-function trang(tranghientai, isMainList)
+function trang(tranghientai)
 {
     var s="";
-    if(isMainList){
     for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
     {
             s+=`<div class="item">
@@ -260,17 +263,12 @@ function trang(tranghientai, isMainList)
             </div>`;
             
     }
-}
-    else{
-        return;
-    }
-
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    phantrang(tongsotrang);
-    trang(1,true);
+    phantrang(tongsotrang,true);
+    trang(1);
 });
 
 
@@ -287,7 +285,7 @@ function hienthisanpham() {
     document.getElementsByClassName("botright")[0].innerHTML = s;
   }
   
-  function trangphanloai(tranghientai, tongsosp, obj) {
+  function trangphanloai(tranghientai, obj) {
     var productsByBrand = productArray.filter(product => product.brandid == obj.id);
     var s = "";
     for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < productsByBrand.length; i++) {
@@ -313,9 +311,16 @@ function hienthisanpham() {
       }
     }
     let tongsotrang = Math.ceil(tongsosp / sp1trang);
-    phantrang(tongsotrang);
-    trangphanloai(1, tongsosp, obj);
+    var temp="";
+    for(let i=1;i<=tongsotrang;i++)
+    {
+        temp+=`<div class="currentPage" onclick="trangphanloai(`+i+`,${obj.id})">`+i+`</div>`
+    }
+    document.getElementsByClassName("midbottom")[0].innerHTML = temp;
+    trangphanloai(1,obj);
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     hienthisanpham();
