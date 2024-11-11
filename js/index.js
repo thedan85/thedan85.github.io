@@ -237,37 +237,44 @@ function phantrang(tongsotrang)
     var s = "";
     for(i=1;i<=tongsotrang;i++)
     {
-        s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
+        s+='<div class="currentPage" onclick="trang('+i+',true)">'+i+'</div>';
     }
     document.getElementsByClassName("midbottom")[0].innerHTML = s;
 }
 
-function trang(tranghientai)
+function trang(tranghientai, isMainList)
 {
     var s="";
+    if(isMainList){
     for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
     {
-        s+=`<div class="item">
-        <img id="myimg" src="${productArray[i].img}"  width="30%">
-        <div>Tên SP: "${productArray[i].name}"</div>
-        <div>Giá SP: "${productArray[i].price}"</div>
-        <div>
-          <span>Mua</span>
-          <span>Chi tiết</span>
-          <span onclick="change();">Thực hiện</span>
-        </div>
-      </div>`;
+            s+=`<div class="item">
+            <img id="myimg" src="${productArray[i].img}"  width="30%">
+            <div>Tên SP: "${productArray[i].name}"</div>
+            <div>Giá SP: "${productArray[i].price}"</div>
+            <div>
+            <span>Mua</span>
+            <span>Chi tiết</span>
+            <span onclick="change();">Thực hiện</span>
+            </div>
+            </div>`;
+            
     }
+}
+    else{
+        return;
+    }
+
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     phantrang(tongsotrang);
-    trang(1);
+    trang(1,true);
 });
 
 
-//san pham theo the loai
+//san pham theo the loai va phan trang theo san pham
 function hienthisanpham() {
   
     var s = "";
@@ -281,47 +288,33 @@ function hienthisanpham() {
   }
   
   function trangphanloai(tranghientai, tongsosp, obj) {
+    var productsByBrand = productArray.filter(product => product.brandid == obj.id);
     var s = "";
-    for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < tongsosp; i++) {
-      if (productArray[i].brandid == obj.id) {
-        s += `
-          <div class="item">
-            <img id="myimg" src="${productArray[i].img}" width="30%">
-            <div>Tên SP: "${productArray[i].name}"</div>
-            <div>Giá SP: "${productArray[i].price}"</div>
-            <div>
-              <span>Mua</span>
-              <span>Chi tiết</span>
-              <span onclick="change();">Thực hiện</span>
-            </div>
+    for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < productsByBrand.length; i++) {
+      s += `
+        <div class="item">
+          <img id="myimg" src="${productsByBrand[i].img}" width="30%">
+          <div>Tên SP: "${productsByBrand[i].name}"</div>
+          <div>Giá SP: "${productsByBrand[i].price}"</div>
+          <div>
+            <span>Mua</span>
+            <span>Chi tiết</span>
+            <span onclick="change();">Thực hiện</span>
           </div>
-        `;
-      }
+        </div>`;
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
   }
   function hienthisanphamtheotheloai(obj) {
     var tongsosp = 0;
-    var s = "";
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
-        s += `<div class="item">
-            <img id="myimg" src="${productArray[i].img}"  width="30%">
-            <div>Tên SP: "${productArray[i].name}"</div>
-            <div>Giá SP: "${productArray[i].price}"</div>
-            <div>
-              <span>Mua</span>
-              <span>Chi tiết</span>
-              <span onclick="change();">Thực hiện</span>
-            </div>
-          </div>`;
         tongsosp++;
       }
     }
     let tongsotrang = Math.ceil(tongsosp / sp1trang);
     phantrang(tongsotrang);
-    document.getElementsByClassName("miditem")[0].innerHTML = s;
-
+    trangphanloai(1, tongsosp, obj);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
