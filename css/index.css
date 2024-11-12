@@ -20,7 +20,9 @@
 
 #Header h1
 {
-    color:hsla(0, 0%, 100%, 0.795)
+    color:hsla(0, 0%, 100%, 0.795);
+    font-size:2vw;
+    font-weight: bold;
 }
 .top-container
 {
@@ -39,6 +41,7 @@
 {
     margin-left:20px;
     color:hsla(0, 0%, 100%, 0.795);
+    font-size:1.3vw;
 }
 .bottom-container
 {
@@ -64,8 +67,17 @@
 {
     text-decoration:none;
     font-family: sans-serif;
+    font-weight:bold;
+    padding-top:10px;
+    transition:0.4s;
+    border-bottom: solid 5px transparent;
 }
 
+#Header .botright a:hover
+{
+
+    border-bottom:solid 2px blue;
+}
 
 
 /*Slideshow*/
@@ -182,7 +194,6 @@
     margin-left:5px;
     font-weight:bold;
     font-size:1,5vw;
-    cursor:pointer;
     row-gap:20px;
 }
 
@@ -190,6 +201,14 @@
 {
     margin-right:20px;
     border:solid black 2px;
+}
+
+
+.item img:hover
+{
+    width:50%;
+    transition:0.3s;
+
 }
 
 .midbottom
@@ -212,6 +231,11 @@
     align-items:center;
     cursor:pointer;
     background-color:blue;
+}
+
+.midbottom .currentPage:hover
+{
+    background-color:white;
 }
 
 
@@ -264,11 +288,12 @@
 
 
 /*Login*/
+
 .container_login
 {
     display:none;
     position:fixed;
-    top:50%;
+    top:20%;
     left:50%;
     transform:translate(-50%,-50%);
     background-color: white;
@@ -277,6 +302,13 @@
     width:100%;
     border-radius:10px;
     z-index:10000;
+    animation-name: form;
+    animation-duration: 1s;
+}
+
+@keyframes form
+{
+    0% {top:0%;}
 }
 .details_login
 {
@@ -353,7 +385,7 @@
 {
     display:none;
     position:fixed;
-    top:30%;
+    top:20%;
     left:50%;
     transform:translate(-50%,-50%);
     background-color: white;
@@ -362,6 +394,8 @@
     width:100%;
     border-radius:10px;
     z-index:10000;
+    animation-name: form;
+    animation-duration: 1s;
 }
 .details_signup
 {
