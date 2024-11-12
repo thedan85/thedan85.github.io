@@ -117,7 +117,7 @@ function checkSignup()
     {
         event.preventDefault();
     }
-    else if((sodienthoai.value.length!=10&&sodienthoai.pattern!="0[0-9]{9}")&&repass_signup.value!=pass_signup.value)
+    else if((sodienthoai.value.length!=10||sodienthoai.pattern!="0[0-9]{9}")||repass_signup.value!=pass_signup.value)
     {
         event.preventDefault();
     }
@@ -228,7 +228,7 @@ var brand = [
     { brandid: 'rolex', brandname: "Rolex" },
     { brandid: 'timex', brandname: "Timex" },
   ]
-const sp1trang = 4;
+const sp1trang = 8;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
 
 //phan trang
@@ -245,7 +245,9 @@ function phantrang(tongsotrang,isMainList)
     document.getElementsByClassName("midbottom")[0].innerHTML = s;
     
 }
-
+function currency(price) {
+    return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+  }
 function trang(tranghientai)
 {
     var s="";
@@ -253,8 +255,8 @@ function trang(tranghientai)
     {
             s+=`<div class="item">
             <img id="myimg" src="${productArray[i].img}"  width="30%">
-            <div>Tên SP: "${productArray[i].name}"</div>
-            <div>Giá SP: "${productArray[i].price}"</div>
+            <div>${productArray[i].name}</div>
+            <div>${currency(productArray[i].price)}</div>
             <div>
             <span>Mua</span>
             <span>Chi tiết</span>
@@ -292,8 +294,8 @@ function hienthisanpham() {
       s += `
         <div class="item">
           <img id="myimg" src="${productsByBrand[i].img}" width="30%">
-          <div>Tên SP: "${productsByBrand[i].name}"</div>
-          <div>Giá SP: "${productsByBrand[i].price}"</div>
+          <div>${productsByBrand[i].name}</div>
+          <div>${currency(productsByBrand[i].price)}</div>
           <div>
             <span>Mua</span>
             <span>Chi tiết</span>
@@ -326,15 +328,17 @@ document.addEventListener("DOMContentLoaded", function() {
     hienthisanpham();
 });
 
+
 //search
 const searchInput = document.getElementById("search-input");
-let resultSearchArray = []; // declare the variable outside of the search function
+let resultSearchArray = [];
 
 const search = function() {
   const searchResult = searchInput.value.toLowerCase();
   resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
   const tongsotrang = Math.ceil(resultSearchArray.length / sp1trang);
   let temp ="";
+  
   for (let i = 1; i <= tongsotrang; i++) {
     temp+=`<div class="currentPage" onclick="trangSearch(${i})">${i}</div>`;
   }
@@ -352,8 +356,8 @@ function trangSearch(tranghientai) {
   for (let i = 0; i < productsToRender.length; i++) {
     s += `<div class="item">
             <img id="myimg" src="${productsToRender[i].img}" width="30%">
-            <div>Tên SP: "${productsToRender[i].name}"</div>
-            <div>Giá SP: "${productsToRender[i].price}"</div>
+            <div>${productsToRender[i].name}</div>
+            <div>${currency(productsToRender[i].price)}</div>
             <div>
               <span>Mua</span>
               <span>Chi tiết</span>
