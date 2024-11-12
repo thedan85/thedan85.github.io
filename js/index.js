@@ -232,15 +232,13 @@ const sp1trang = 8;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
 
 //phan trang
-function phantrang(tongsotrang,isMainList)
+function phantrang(tongsotrang)
 {
     var s = "";
-    if(isMainList)
+
+    for(i=1;i<=tongsotrang;i++)
     {
-        for(i=1;i<=tongsotrang;i++)
-        {
-            s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
-        }
+        s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
     }
     document.getElementsByClassName("midbottom")[0].innerHTML = s;
     
@@ -269,7 +267,7 @@ function trang(tranghientai)
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    phantrang(tongsotrang,true);
+    phantrang(tongsotrang);
     trang(1);
 });
 
