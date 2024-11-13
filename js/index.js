@@ -218,7 +218,8 @@ var productArray = [
     {productId:10003, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1208WHD-1AVDF', price:1908000}
     ,{productId:10004, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1272L-1AVDF', price:1165000},
     {productId:10005, brandid:'citizen', img:'images/products/4.jpg', name:'Đồng Hồ Citizen - Nữ EU6060-55D', price:3391000},
-    {productId:10006, brandid:'citizen', img:'images/products/5.jpg', name:'Đồng Hồ Citizen - Nữ EM0589-88X', price:7293000}
+    {productId:10006, brandid:'citizen', img:'images/products/5.jpg', name:'Đồng Hồ Citizen - Nữ EM0589-88X', price:7293000},
+    
 
 ]
 
@@ -255,11 +256,7 @@ function trang(tranghientai)
             <img id="myimg" src="${productArray[i].img}"  width="30%">
             <div>${productArray[i].name}</div>
             <div>${currency(productArray[i].price)}</div>
-            <div>
-            <span>Mua</span>
-            <span>Chi tiết</span>
-            <span onclick="change();">Thực hiện</span>
-            </div>
+            <button type="button" class="btn" onclick="showProductInfo(${productArray[i].productId});">Chi tiết</button>
             </div>`;
             
     }
@@ -271,6 +268,49 @@ document.addEventListener("DOMContentLoaded", function() {
     trang(1);
 });
 
+//products detail
+function showProductInfo(productid) {
+    document.getElementsByClassName("product-container")[0].style.display = "block";
+    document.body.style.opacity = "0.8";
+    for(let i = 0;i<productArray.length;i++)
+    {
+        if(productArray[i].productId == productid)
+        {
+            document.getElementById("productimg").src = productArray[i].img;
+            document.getElementById("productname").innerHTML = productArray[i].name;
+            document.getElementById("productprice").innerHTML = currency(productArray[i].price);
+        }
+    }
+
+    const quantityup= document.getElementById("quanup");
+    const quantitydown= document.getElementById("quandown");
+    const quantity = document.getElementById("quan");
+    
+    let increment = function()
+    {
+        quantity.value = parseInt(quantity.value)+1;
+    };
+
+    let decrement = function()
+    {
+        if(quantity.value>1){
+            quantity.value = parseInt(quantity.value)-1;
+        }
+    };
+
+    quantityup.addEventListener("click",increment);
+    quantitydown.addEventListener("click",decrement);
+
+    document.querySelector("button[value='closeproduct']").onclick = function closeProductInfo()
+    {
+        document.getElementsByClassName("product-container")[0].style.display = "none";
+        document.body.style.opacity = "1";
+        quantity.value = 1;
+        quantityup.removeEventListener("click",increment);
+        quantitydown.removeEventListener("click",decrement);
+    }
+
+}
 
 //san pham theo the loai va phan trang theo san pham
 function hienthisanpham() {
@@ -294,11 +334,7 @@ function hienthisanpham() {
           <img id="myimg" src="${productsByBrand[i].img}" width="30%">
           <div>${productsByBrand[i].name}</div>
           <div>${currency(productsByBrand[i].price)}</div>
-          <div>
-            <span>Mua</span>
-            <span>Chi tiết</span>
-            <span onclick="change();">Thực hiện</span>
-          </div>
+          <button type="button" class="btn" onclick="showProductInfo(${productsByBrand[i].productId});">Chi tiết</button>
         </div>`;
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
@@ -356,12 +392,9 @@ function trangSearch(tranghientai) {
             <img id="myimg" src="${productsToRender[i].img}" width="30%">
             <div>${productsToRender[i].name}</div>
             <div>${currency(productsToRender[i].price)}</div>
-            <div>
-              <span>Mua</span>
-              <span>Chi tiết</span>
-              <span onclick="change();">Thực hiện</span>
-            </div>
+            <button type="button" class="btn" onclick="showProductInfo(${productsToRender[i].productId});">Chi tiết</button>
           </div>`;
   }
   document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
+
