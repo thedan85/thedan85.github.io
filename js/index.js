@@ -209,6 +209,8 @@ button_login.addEventListener("click" , function toLogin()
 });
 
 
+
+
 //Products
 
 var productArray = [
@@ -231,6 +233,8 @@ var brand = [
   ]
 const sp1trang = 8;
 let tongsotrang = Math.ceil(productArray.length/sp1trang);
+
+
 
 //phan trang
 function phantrang(tongsotrang)
@@ -268,8 +272,11 @@ document.addEventListener("DOMContentLoaded", function() {
     trang(1);
 });
 
+
+
 //products detail
 function showProductInfo(productid) {
+    const buttontoCart = document.querySelector("button[value='addtocart']");
     document.getElementsByClassName("product-container")[0].style.display = "block";
     document.body.style.opacity = "0.8";
     for(let i = 0;i<productArray.length;i++)
@@ -310,8 +317,20 @@ function showProductInfo(productid) {
         quantitydown.removeEventListener("click",decrement);
     }
 
-}
+    buttontoCart.onclick = addtocart(productid,quantity.value);
 
+}
+function addtocart(productid,quantity) {
+
+    
+    for(let i = 0;i<productArray.length;i++)
+    {
+        if(productArray[i].productId == productid)
+        {
+            
+        }
+    }
+}
 //san pham theo the loai va phan trang theo san pham
 function hienthisanpham() {
   

@@ -232,6 +232,8 @@
 {
     display:none;
 }
+
+
 .productdetails
 {
     position:fixed;
@@ -307,6 +309,12 @@ button[value="closeproduct"]:hover
 {
     height:auto;
     width:30%;
+}
+
+.toCart:hover
+{
+    background-color: white;
+    color:darkblue;
 }
 
 .toCart
