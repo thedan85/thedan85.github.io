@@ -176,8 +176,6 @@
     width:100%;
     flex-wrap: wrap;
     gap:10px;
-    border:solid black 5px;
-    box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.5);
     padding:5px;
 }
 
@@ -344,8 +342,7 @@ button[value="closeproduct"]:hover
 
 .currentPage
 {
-    font-size:2vw;
-    font-weight:bold;
+    font-size:30px;
     border:solid black 2px;
     display: flex;
     justify-content:space-between;
@@ -456,7 +453,7 @@ button[value="closeproduct"]:hover
 {
     font-size:40px;
     font-weight:bold;
-    text-decoration: underline;
+    border-bottom:solid black 3px;
 }
 
 .details_login label
@@ -468,9 +465,9 @@ button[value="closeproduct"]:hover
 .details_login input[name="ten_login"] , .details_login input[name="pass_login"]
 {
     border:solid black 1px;
-    border-radius:3px;
     margin-top:5px;
     font-size:20px;
+    height:35px;
 }
 
 .details_login input[type="submit"]
@@ -556,7 +553,7 @@ button[value="closeproduct"]:hover
 {
     font-size:40px;
     font-weight:bold;
-    text-decoration: underline;
+    border-bottom:solid black 3px;
 }
 
 .details_signup label
@@ -568,9 +565,9 @@ button[value="closeproduct"]:hover
 .input-signup input
 {
     border:solid black 1px;
-    border-radius:3px;
     margin-top:5px;
     font-size:20px;
+    height:35px;
 }
 
 .details_signup input[type="submit"]
@@ -592,4 +589,25 @@ button[value="closeproduct"]:hover
 .toLogin a
 {
     color:hsl(0, 0%, 0%);
+}
+
+
+/*Cart*/
+.trangchu
+{
+    margin-bottom:30px;
+}
+.trangchu a
+{
+
+    color:hsl(0, 0%, 0%);
+    font-size: 25px;
+}
+
+#cart h1
+{
+    display:inline;
+    border-bottom:solid black 5px;
+    margin-left:50px;
+    
 }
