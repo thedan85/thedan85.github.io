@@ -1,5 +1,6 @@
 initProduct();
 Admin();
+checkLogin2();
 
 function currency(price) {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -44,6 +45,7 @@ const profile_icon = document.getElementsByClassName("icon");
 const container_login = document.getElementsByClassName("container_login");
 const button_close = document.querySelectorAll("button[value='close']");
 
+profile_icon[0].onclick = showLogin;
 function showLogin()
 {
 
@@ -51,9 +53,6 @@ function showLogin()
     container_signup[0].style.display = "none";
     document.body.style.opacity = "0.8";
 }
-
-profile_icon[0].onclick = showLogin;
-
 
 function closeLogin()
 {
@@ -69,60 +68,62 @@ const password = document.getElementById("pass_login");
 const username_error = document.querySelector(".username-error");
 const password_error = document.querySelector(".password-error");
 const submit_button = document.getElementById("submit_login");
-var flag = true;
-function checkLogin()
-{
-    if(username.value==""||password.value=="")
-    {
-        event.preventDefault();
-    }
-    if(username.value=="")
-    {
-        username_error.style.display = "block";
-        flag = false;
-    }
-
-    if(username.value!="")
-    {
-        username_error.style.display = "none";
-    }
-    
-    if(password.value=="")
-    {
-        password_error.style.display = "block";
-        flag=false;
-    }
-
-    if(password.value!="")
-    {
-        password_error.style.display = "none";
-        flag = true;
-    }
-
-    if(flag == false)
-    {
-        event.preventDefault();
-    }
-    else{
-        for(let i = 0;i<userArray.length;i++)
-        {
-            if(username.value==userArray[i].username&&password.value==userArray[i].password)
-            {
-                profile_icon[0].innerHTML = userArray[i].username;
-                localStorage.setItem("userlogin",JSON.stringify(userArray[i]));
-                if (localStorage.getItem("userlogin")) {
-                    window.location.href = "index.html";
-                }  
-                return true;
-            }
-        }
-        username_error.innerText = "Sai thông tin đăng nhập.";
-        username_error.style.display = "block";
-        event.preventDefault();
-    }
-}
 
 submit_button.addEventListener("click", checkLogin);
+function checkLogin(event) {
+    event.preventDefault();
+  
+    if (username.value == "" || password.value == "") {
+      username_error.style.display = "block";
+      password_error.style.display = "block";
+      return;
+    }
+  
+    if (username.value != "") {
+      username_error.style.display = "none";
+    }
+  
+    if (password.value != "") {
+      password_error.style.display = "none";
+    }
+  
+    for (let i = 0; i < userArray.length; i++) {
+      if (username.value == userArray[i].username) {
+        if (password.value == userArray[i].password) {
+          closeLogin();
+          localStorage.setItem("userlogin", JSON.stringify(userArray[i]));
+          window.location.reload();
+          alert("Đăng nhập thành công!");
+          return true;
+        }
+      }
+    }
+    username_error.innerText = "Sai thông tin đăng nhập.";
+    username_error.style.display = "block";
+}
+
+function logout(url){
+	localStorage.removeItem('userlogin');
+	localStorage.removeItem('cart');
+	location.href=url;
+}
+
+function checkLogin2()
+{
+    const isLoggedIn = localStorage.getItem('userlogin');
+    var s="";
+    if (isLoggedIn) {
+        s='<li><button onclick="logout(\'index.html\');">Đăng xuất</button></li>'+
+            '<li>'+JSON.parse(isLoggedIn).fullname+'</li>'+
+            '<li><a href="cart.html"><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></a></li>';
+    }
+    else{
+        s='<li><a href="#"><img src="images/icons/user-solid.svg" alt="" class="icon"></a></li>'+
+            '<li><a href="cart.html"><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></a></li>';
+    }
+    document.getElementsByClassName("topright")[0].innerHTML = s;    
+}
+
 
 //Signup
 const button_signup = document.querySelector(".toSignup a");
@@ -252,9 +253,6 @@ function checkSignup()
         flag = true;
     }
 
-
-    
-
     if(flag==false)
     {
         event.preventDefault();
@@ -277,14 +275,14 @@ function checkSignup()
             var userArray2 = userArray;
             userArray2.push(user);
             localStorage.setItem('users', JSON.stringify(userArray2));
-            alert("Dăng ký thành công!");
+            alert("Đăng ký thành công!");
             showLogin();
         }
         else
         {
             var userArray2 = [user];
             localStorage.setItem('users', JSON.stringify(userArray2));
-            alert("Dăng ký thành công!");
+            alert("Đăng ký thành công!");
             showLogin();
         }
     }
@@ -515,6 +513,7 @@ function cart()
     if(localStorage.getItem("cart") == null)
     {
         var s='<tr><th>Giỏ hàng trống</th></tr>';
+        document.getElementById("cart-items").innerHTML = s;
     }
 }
 

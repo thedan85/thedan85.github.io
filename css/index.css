@@ -41,6 +41,30 @@
     color:hsla(0, 0%, 100%, 0.795);
     font-size:1.3vw;
 }
+
+.topright
+{
+    list-style-type: none;
+    display:flex;
+    font-size:1.3vw;
+}
+
+.topright button
+{
+    height:30px;
+    font-weight:bold;
+    border-radius:20px;
+    cursor:pointer;
+    border:solid black 1px;
+}
+
+.topright button:hover
+{
+    background-color: darkblue;
+    color:white;
+    font-weight:bold;
+}
+
 .bottom-container
 {
     padding:10px;
@@ -56,6 +80,10 @@
     width:30px;
 }
 
+.icon img
+{
+    display:block;
+}
 .botleft a
 {
     text-decoration: none;
@@ -609,5 +637,4 @@ button[value="closeproduct"]:hover
     display:inline;
     border-bottom:solid black 5px;
     margin-left:50px;
-    
 }
