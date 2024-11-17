@@ -249,7 +249,7 @@
 .item:hover img
 {
     width:60%;
-    transition:0.3s;
+    transition:1s;
     margin: 10px 0 30px 0;
 }
 
