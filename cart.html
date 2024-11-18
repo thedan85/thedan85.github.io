@@ -13,16 +13,25 @@
         </div>
         <!--Body-->
         <div id="cart">
+            <div id ="bill"></div>
+            
             <div class="cart-container">
                 <h1>Giỏ hàng</h1>
             </div>
-
+            <br><br>
             <div class="cart-info">
                 <table id="cart-items">
                 </table>
+                <br>
+                
+                <div class="cart-total">Thành tiền:</div>
+                <div id="totalprice"></div>
+
+                <button type="button" class="btn" onclick="checkout();">Thanh toán</button>
+
             </div>
         </div>
     </body>
     
-    <script src="js/index.js"></script>
+    <script src="js/cart.js"></script>
 </html>

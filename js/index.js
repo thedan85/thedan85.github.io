@@ -414,7 +414,26 @@ trang(1);
 
 
 //products detail
+const quantityup= document.getElementById("quanup");
+const quantitydown= document.getElementById("quandown");
+const quantity = document.getElementById("quan");
+
+let increment = function()
+{
+    quantity.value = parseInt(quantity.value)+1;
+};
+
+let decrement = function()
+{
+    if(quantity.value>1){
+        quantity.value = parseInt(quantity.value)-1;
+    }
+};
+
 function showProductInfo(productid) {
+    quantityup.addEventListener("click",increment);
+    quantitydown.addEventListener("click",decrement);
+    
     const buttontoCart = document.querySelector("button[value='addtocart']");
     document.getElementsByClassName("product-container")[0].style.display = "block";
     document.body.style.opacity = "0.8";
@@ -429,31 +448,13 @@ function showProductInfo(productid) {
         }
     }
 
-    const quantityup= document.getElementById("quanup");
-    const quantitydown= document.getElementById("quandown");
-    const quantity = document.getElementById("quan");
-    
-    let increment = function()
-    {
-        quantity.value = parseInt(quantity.value)+1;
-    };
-
-    let decrement = function()
-    {
-        if(quantity.value>1){
-            quantity.value = parseInt(quantity.value)-1;
-        }
-    };
-
-    quantityup.addEventListener("click",increment);
-    quantitydown.addEventListener("click",decrement);
-
     document.querySelector("button[value='closeproduct']").onclick = function closeProductInfo()
     {
         document.getElementsByClassName("product-container")[0].style.display = "none";
         document.body.style.opacity = "1";
         quantityup.removeEventListener("click",increment);
         quantitydown.removeEventListener("click",decrement);
+        return;
     }
 
     buttontoCart.setAttribute("onclick" , "addtocart("+productid+")");
@@ -461,6 +462,8 @@ function showProductInfo(productid) {
 
 function closeProductInfo() {
     document.getElementsByClassName("product-container")[0].style.display = "none";
+    quantityup.removeEventListener("click",increment);
+    quantitydown.removeEventListener("click",decrement);
     document.body.style.opacity = "1";
 }
 function addtocart(productid)
@@ -507,16 +510,6 @@ function addtocart(productid)
     }
     closeProductInfo();
 }
-
-function cart()
-{
-    if(localStorage.getItem("cart") == null)
-    {
-        var s='<tr><th>Giỏ hàng trống</th></tr>';
-        document.getElementById("cart-items").innerHTML = s;
-    }
-}
-
 
 
 //search

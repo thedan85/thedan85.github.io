@@ -638,3 +638,29 @@ button[value="closeproduct"]:hover
     border-bottom:solid black 5px;
     margin-left:50px;
 }
+
+.cart-total
+{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:10px;
+    margin-left:50px;
+    margin-bottom:10px;
+    display:inline-block;
+}
+
+#totalprice
+{
+    display:inline-block;
+    margin-left:10px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+#cart button
+{
+    border:solid black 2px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor:pointer;
+}
