@@ -6,28 +6,32 @@
         <title>Watch Store</title>
         <link rel="stylesheet" href = "css/index.css">
     </head>
+    
     <body>
-        <div id="Header">
-            <div class="top-container">
-                <div class="topright">
-                    <ul>
-                        <li><a href="#"><img src="images/icons/user-solid.svg" alt="" class="icon"></a></li>
-                        <li><a href="cart.html"><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></a></li>
-                    </ul>
-                </div>
-            </div>
+        <div class="trangchu">
+            <a href="index.html"> <- Về trang chủ</a>
+        </div>
+        <!--Body-->
+        <div id="cart">
+            <div id ="bill"></div>
             
-            <div class="bottom-container">
-                <div class="botleft">
-                    <h1>Watch Store</h1>
-                </div>
-                <div class="botright">
-                    <ul>
-                        <li>ROLEX</li>
-                        <li>TIMEX</li>
-                        <li>CASIO</li>
-                        <li>CITIZEN</li>
-                    </ul>
-                </div>
+            <div class="cart-container">
+                <h1>Giỏ hàng</h1>
+            </div>
+            <br><br>
+            <div class="cart-info">
+                <table id="cart-items">
+                </table>
+                <br>
+                
+                <div class="cart-total">Thành tiền:</div>
+                <div id="totalprice"></div>
+
+                <button type="button" class="btn" onclick="checkout();">Thanh toán</button>
+
             </div>
         </div>
+    </body>
+    
+    <script src="js/cart.js"></script>
+</html>
