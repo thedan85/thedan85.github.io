@@ -1,5 +1,4 @@
 initProduct();
-Admin();
 checkLogin2();
 
 function currency(price) {
@@ -28,16 +27,8 @@ function prevImage()
 setInterval(nextImage, 3000);
 
 
-//UserArray&admin
-function Admin()
-{
-    if(localStorage.getItem("admin")==null)
-    {
-        var admin = "";
-        var admin = {username: 'admin', password: 'admin', fullname: 'Admin', address: '273 An Dương Vương, P3, Quận 5, TPHCM', phone: '0000000000' , datesignup: '2024-01-01'};
-		localStorage.setItem('admin',JSON.stringify(admin));
-    }
-}
+//UserArray
+
 
 const userArray = JSON.parse(localStorage.getItem("users"));
 //Login
@@ -86,20 +77,23 @@ function checkLogin(event) {
     if (password.value != "") {
       password_error.style.display = "none";
     }
-  
-    for (let i = 0; i < userArray.length; i++) {
-      if (username.value == userArray[i].username) {
-        if (password.value == userArray[i].password) {
-          closeLogin();
-          localStorage.setItem("userlogin", JSON.stringify(userArray[i]));
-          window.location.reload();
-          alert("Đăng nhập thành công!");
-          return true;
+    
+    if(userArray!=null&&userArray!=[])
+    {
+        for (let i = 0; i < userArray.length; i++) {
+        if (username.value == userArray[i].username) {
+            if (password.value == userArray[i].password) {
+            closeLogin();
+            localStorage.setItem("userlogin", JSON.stringify(userArray[i]));
+            window.location.reload();
+            alert("Đăng nhập thành công!");
+            return true;
+            }
         }
-      }
+        }
+        username_error.innerText = "Sai thông tin đăng nhập.";
+        username_error.style.display = "block";
     }
-    username_error.innerText = "Sai thông tin đăng nhập.";
-    username_error.style.display = "block";
 }
 
 function logout(url){
@@ -112,7 +106,7 @@ function checkLogin2()
 {
     const isLoggedIn = localStorage.getItem('userlogin');
     var s="";
-    if (isLoggedIn) {
+    if (isLoggedIn||isLoggedIn==[]) {
         s='<li><button onclick="logout(\'index.html\');">Đăng xuất</button></li>'+
             '<li>'+JSON.parse(isLoggedIn).fullname+'</li>'+
             '<li><a href="cart.html"><img src="images/icons/cart-shopping-solid.svg" alt="" class="icon"></a></li>';
@@ -262,7 +256,7 @@ function checkSignup()
         var today = new Date();
         var datesignup = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
         var user = {username: ten_signup.value, password: pass_signup.value, fullname: hovaten.value, address: diachi.value, phone: sodienthoai.value , datesignup: datesignup};
-        if(userArray!=null){
+        if(userArray!=null&&userArray!=[]){
             for(let i = 0 ; i<userArray.length;i++)
             {
                 if(ten_signup.value==userArray[i].username)
