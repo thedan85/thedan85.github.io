@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Quản Lý Đơn Hàng</h1>
+        <div class="menu">
+            <ul>
+                <li><a href="manage-users.html">Quản Lý Người Dùng</a></li>
+                <li><a href="manage-products.html">Quản Lý Sản Phẩm</a></li>
+                <li><a href="manage-orders.html">Quản Lý Đơn Hàng</a></li>
+                <li><a href="sales-statistics.html">Thống Kê Kinh Doanh</a></li>
+                <li><a href="admin-login.html">Đăng xuất</a></li>
+            </ul>
+        </div>
+        <!-- Lọc Đơn Hàng -->
+        <div class="filter-options">
+            <label for="status-filter">Lọc theo tình trạng đơn hàng:</label>
+            <select id="status-filter">
+                <option value="all">Tất Cả</option>
+                <option value="pending">Chưa Xử Lý</option>
+                <option value="confirmed">Đã Xác Nhận</option>
+                <option value="shipped">Đã Giao</option>
+                <option value="cancelled">Đã Hủy</option>
+            </select>
+
+            <label for="start-date">Lọc theo thời gian:</label>
+            <input type="date" id="start-date" />
+            <input type="date" id="end-date" />
+
+            <label for="district-filter">Lọc theo địa chỉ giao hàng:</label>
+            <select id="district-filter">
+                <option value="all">Tất Cả</option>
+                <option value="district-1">Quận 1</option>
+                <option value="district-2">Quận 2</option>
+                <option value="district-1">Quận 3</option>
+                <option value="district-2">Quận 4</option>
+                <option value="district-1">Quận 5</option>
+                <option value="district-2">Quận 6</option>
+                <option value="district-1">Quận 7</option>
+                <option value="district-2">Quận 8</option>
+                <option value="district-1">Quận 9</option>
+                <option value="district-2">Quận 10</option>
+                <option value="district-1">Quận 11</option>
+                <option value="district-2">Quận 12</option>
+                <option value="district-1">Quận Tân Phú</option>
+                <option value="district-2">Quận Gò Vấp</option>
+                <option value="district-1">Quận Bình Tân</option>
+                <option value="district-2">Quận Bình Thạnh</option>
+                <option value="district-1">Quận Phú Nhuận</option>
+                <option value="district-2">TP Thủ Đức</option>
+            </select>
+
+            <button id="filter-btn">Lọc</button>
+        </div>
+
+        <!-- Bảng Đơn Hàng -->
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Địa Chỉ</th>
+                    <th>Tình Trạng</th>
+                    <th>Ngày Đặt</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="order-list">
+                <!-- Dữ liệu đơn hàng sẽ được hiển thị ở đây -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="manage-orders.js"></script> <!-- Thêm link tới file JS -->
+</body>
+</html>
