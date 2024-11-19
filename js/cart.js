@@ -1,14 +1,19 @@
 cart();
+
 function currency(price) {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 }
 function cart()
 {
+    document.getElementById("bill").style.display = "none";
+    document.getElementById("cart").style.display = "block";
+
     if(localStorage.getItem("cart") == null||localStorage.getItem("cart") == "[]")
     {
         var s='<tr><th>Giỏ hàng trống</th></tr>';
         document.getElementById("cart-items").innerHTML = s;
         document.getElementById("cart-items").style.borderBottom = "solid black 1px";
+        document.getElementById("totalprice").innerHTML = "";
     }
     else
     {
@@ -101,12 +106,12 @@ function checkout()
     }
 
     var cartArray = JSON.parse(localStorage.getItem("cart"));
-
-    let info;
+    var info ='';
+    var totalprice;
     for(let i = 0;i<cartArray.length;i++)
     {
-        info+=cartArray[i];
-        totalprice+=cartArray[i].totalprice;
+        info+=cartArray[i].quantity+' x '+cartArray[i].name+'<br><br>';
+        totalprice=cartArray[i].quantity*cartArray[i].price;
     }
 
     var user = JSON.parse(localStorage.getItem("userlogin"));
@@ -121,10 +126,10 @@ function checkout()
         bill.id = 0;
         bill.username = user.username;
         bill.info = info;
-        bill.totalprice = totalprice;
+        bill.totalprice = totalprice
         bill.date = d;
-        bill.paid = false;
-        ArrayBill.push(bill);
+        bill.status = 'Chưa';
+        ArrayBill.unshift(bill);
         localStorage.setItem("ArrayBill",JSON.stringify(ArrayBill));
     }
     else
@@ -136,8 +141,8 @@ function checkout()
         bill.info = info;
         bill.totalprice = totalprice;
         bill.date = d;
-        bill.paid = false;
-        ArrayBill.push(bill);
+        bill.status = 'Chưa';
+        ArrayBill.unshift(bill);
         localStorage.setItem("ArrayBill",JSON.stringify(ArrayBill));
     }
     localStorage.removeItem("cart");
@@ -147,26 +152,28 @@ function checkout()
 
 function showbill()
 {
-    var ArrayBill = JSON.parse("ArrayBill",JSON.stringify(ArrayBill));
+    document.getElementById("bill").style.display = "block";
+    document.getElementById("cart").style.display = "none";
+
+    var ArrayBill = JSON.parse(localStorage.getItem("ArrayBill"));
     
     if(localStorage.getItem("ArrayBill") == null)
     {
-        document.getElementById("bill").innerHTML = "";        
+        var s='<tr><th>Không có đơn hàng nào được đặt.</th></tr>';
+        document.getElementById("bill-items").innerHTML = s;      
     }
     else
     {
-        var s="";
-        var info ="";
+        var s='<tr><th>Sản phẩm</th><th>Tổng tiền</th><th>Ngày đặt</th><th>Tình trạng</th></tr>';
         for(let i=0;i<ArrayBill.length;i++)
         {
-            info = ArrayBill[i].info.quantity+' x '+ArrayBill[i].info.name;
-            s+='<div class="bill-container">'+
-            '<div class="bill-product">'+info+'</div>'+
-            '<div class="bill-price">'+currency(ArrayBill[i].totalprice)+'</div>'+
-            '<div class="status">'+ArrayBill[i].status+'</div>'+
-            '</div>'
+            s+='<tr>'+
+				'<td><div>'+ArrayBill[i].info+'</div></td>'+
+				'<td>'+currency(ArrayBill[i].totalprice)+'</td>'+
+                '<td>'+ArrayBill[i].date+'</td>'+
+                '<td>'+ArrayBill[i].status+'</td>'+
+				'</tr>';
+		}
         }
-        document.getElementById("bill").innerHTML = s;
+        document.getElementById("bill-items").innerHTML = s;
     }
-
-}
