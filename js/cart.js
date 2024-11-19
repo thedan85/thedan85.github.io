@@ -117,8 +117,8 @@ function checkout()
     if(localStorage.getItem("ArrayBill")==null)
     {
         var ArrayBill = [];
-        var bill;
-        bill.id = ArrayBill.length;
+        var bill = {};
+        bill.id = 0;
         bill.username = user.username;
         bill.info = info;
         bill.totalprice = totalprice;
@@ -130,7 +130,7 @@ function checkout()
     else
     {
         var ArrayBill = JSON.parse(localStorage.getItem("ArrayBill"));
-        var bill;
+        var bill = {};
         bill.id = ArrayBill.length;
         bill.username = user.username;
         bill.info = info;
@@ -142,7 +142,6 @@ function checkout()
     }
     localStorage.removeItem("cart");
     cart();
-    showbill();
 
 }
 
@@ -152,7 +151,7 @@ function showbill()
     
     if(localStorage.getItem("ArrayBill") == null)
     {
-        document.getElementById("bill").style.display = "none";
+        document.getElementById("bill").innerHTML = "";        
     }
     else
     {
@@ -164,9 +163,10 @@ function showbill()
             s+='<div class="bill-container">'+
             '<div class="bill-product">'+info+'</div>'+
             '<div class="bill-price">'+currency(ArrayBill[i].totalprice)+'</div>'+
-            '<div class="status">'+ArrayBill[i].paid+'</div>'+
+            '<div class="status">'+ArrayBill[i].status+'</div>'+
             '</div>'
         }
         document.getElementById("bill").innerHTML = s;
     }
+
 }
