@@ -42,6 +42,7 @@ function showLogin()
 
     container_login[0].style.display = "block";
     container_signup[0].style.display = "none";
+    container_address[0].style.display = "none";
     document.body.style.opacity = "0.8";
 }
 
@@ -53,7 +54,7 @@ function closeLogin()
 
 button_close[0].onclick = closeLogin;
 
-//Login-Error
+//Login
 const username = document.getElementById("ten_login");
 const password = document.getElementById("pass_login");
 const username_error = document.querySelector(".username-error");
@@ -122,6 +123,8 @@ function checkLogin2()
 //Signup
 const button_signup = document.querySelector(".toSignup a");
 const container_signup = document.getElementsByClassName("container_signup");
+const button_next = document.getElementById("next");
+const container_address = document.getElementsByClassName("container_address");
 
 button_signup.onclick =function showSignup()
 {
@@ -134,26 +137,59 @@ button_close[1].onclick = function closeSignup()
     container_signup[0].style.display = "none";
     document.body.style.opacity = "1";
 }
+button_next.onclick = function showAddress()
+{
+    container_signup[0].style.display = "none";
+    container_address[0].style.display = "block";
+    document.body.style.opacity = "0.8";
+}
 
+const button_prev = document.getElementById("prev");
+
+function closeAddress()
+{
+    container_address[0].style.display = "none";
+    document.body.style.opacity = "1";
+}
+button_prev.addEventListener("click" , function toSignup()
+{
+    container_signup[0].style.display = "block";
+    container_login[0].style.display = "none";
+    document.body.style.opacity = "0.8";
+    closeAddress();
+});
+
+const button_login = document.querySelector(".toLogin a");
+
+button_login.addEventListener("click" , function toLogin()
+{
+    container_signup[0].style.display = "none";
+    container_login[0].style.display = "block";
+    document.body.style.opacity = "0.8";
+});
 //Signup-Error
 const hovaten = document.getElementById("hovaten");
-const diachi = document.getElementById("diachi");
+const email = document.getElementById("email");
 const sodienthoai = document.getElementById("sodienthoai");
 const ten_signup = document.getElementById("ten_signup");
 const pass_signup = document.getElementById("pass_signup");
 const repass_signup = document.getElementById("repass_signup");
 const hovaten_error = document.querySelector(".hovaten-error");
-const diachi_error = document.querySelector(".diachi-error");
+const email_error = document.querySelector(".email-error");
 const sodienthoai_error = document.querySelector(".sodienthoai-error");
 const username_signup_error = document.querySelector(".username-signup-error");
 const pass_signup_error = document.querySelector(".pass-signup-error");
 const repass_signup_error = document.querySelector(".repass-error");
 const submit_signup = document.getElementById("submit_signup");
-const button_login = document.querySelector(".toLogin a");
+const address = document.getElementById("address");
+const address_error = document.querySelector(".address-error");
+const city = document.getElementById("city");
+const district = document.getElementById("district");
+const select_error = document.querySelector(".select-error");
 var flag = true;
 function checkSignup()
 {
-    if(hovaten.value==""||diachi.value==""||sodienthoai.value==""||ten_signup.value==""||pass_signup.value==""||repass_signup.value=="")
+    if(hovaten.value==""||email.value==""||sodienthoai.value==""||ten_signup.value==""||pass_signup.value==""||repass_signup.value==""||address.value==""||city.value=="city"||district.value=="district")
     {
         event.preventDefault();
     }
@@ -172,15 +208,15 @@ function checkSignup()
         hovaten_error.style.display = "none";
     }
     
-    if(diachi.value=="")
+    if(email.value=="")
     {
-        diachi_error.style.display = "block";
+        email_error.style.display = "block";
         flag = false;
     }
 
-    if(diachi.value!="")
+    if(email.value!="")
     {
-        diachi_error.style.display = "none";
+        email_error.style.display = "none";
     }
 
     if(sodienthoai.value=="")
@@ -188,6 +224,28 @@ function checkSignup()
         sodienthoai_error.innerHTML="Bạn chưa nhập số điện thoại";
         sodienthoai_error.style.display = "block";
         flag = false;
+    }
+
+    if(address.value=="")
+    {
+        address_error.style.display = "block";
+        flag = false;
+    }
+
+    if(address.value!="")
+    {
+        address_error.style.display = "none";
+    }
+
+    if(city.value=="city"||district.value=="district")
+    {
+        select_error.style.display = "block";
+        flag = false;
+    }
+
+    if(city.value!="city"&&district.value!="district")
+    {
+        select_error.style.display = "none";
     }
 
     if(sodienthoai.value!="")
@@ -255,7 +313,11 @@ function checkSignup()
     {
         var today = new Date();
         var datesignup = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        var user = {username: ten_signup.value, password: pass_signup.value, fullname: hovaten.value, address: diachi.value, phone: sodienthoai.value , datesignup: datesignup};
+        var address_signup = {};
+        address_signup.address = address.value;
+        address_signup.city = city.value;
+        address_signup.district = district.value;
+        var user = {username: ten_signup.value, password: pass_signup.value, fullname: hovaten.value, address: address_signup, email: email.value, phone: sodienthoai.value , datesignup: datesignup};
         if(userArray!=null&&userArray!=[]){
             for(let i = 0 ; i<userArray.length;i++)
             {
@@ -282,16 +344,6 @@ function checkSignup()
     }
 }
 submit_signup.addEventListener("click", checkSignup);
-
-button_login.addEventListener("click" , function toLogin()
-{
-    container_signup[0].style.display = "none";
-    container_login[0].style.display = "block";
-    document.body.style.opacity = "0.8";
-});
-
-
-
 
 //Products
 

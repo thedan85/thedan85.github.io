@@ -122,10 +122,13 @@ body {
 
 .slideshow
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position:relative;
-    width:100%;
+    width:70%;
     height:500px;
-    margin-top:213px;
+    margin-top:250px;
     z-index:0;
 }
 
@@ -411,7 +414,7 @@ button[value="closeproduct"]:hover
     top:20%;
     left:50%;
     transform:translate(-50%,-50%);
-    background-color: white;
+    background-color: #fff;
     border:solid black 3px;
     max-width:500px;
     width:100%;
@@ -469,7 +472,7 @@ button[value="closeproduct"]:hover
 
 .details_login input[type="submit"]
 {
-    background-color:lightblue;
+    background-color:#007bff;
     font-weight:bold;
     font-size:20px;
     width:100%;
@@ -500,12 +503,12 @@ button[value="closeproduct"]:hover
 {
     display:none;
     position:fixed;
-    top:20%;
+    top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    background-color: white;
+    background-color: #fff;
     border:solid black 3px;
-    max-width:800px;
+    max-width:500px;
     width:100%;
     border-radius:10px;
     z-index:10000;
@@ -515,17 +518,13 @@ button[value="closeproduct"]:hover
 .details_signup
 {
     padding:10px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
 }
 
-.input-signup
+.input-signup , .input-address
 {
     margin-bottom:10px;
-    width:calc(50% - 70px);
 }
-.title_signup
+.title_signup , .title_address
 {
     display:flex;
     justify-content: space-between;
@@ -535,7 +534,7 @@ button[value="closeproduct"]:hover
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-    justify-content: space-around;
+    flex-direction: column;
 }
 .title_signup button
 {
@@ -553,12 +552,10 @@ button[value="closeproduct"]:hover
     border-bottom:solid black 3px;
 }
 
-.details_signup label
+.input-signup
 {
-    font-size:20px;
-    font-weight:bold;
+    text-align: center;
 }
-
 .input-signup input
 {
     border:solid black 1px;
@@ -567,31 +564,120 @@ button[value="closeproduct"]:hover
     height:35px;
 }
 
-.details_signup input[type="submit"]
-{
-    background-color:lightblue;
-    font-weight:bold;
-    font-size:20px;
-    width:100%;
-    cursor:pointer;
-}
-
-.hovaten-error , .diachi-error , .sodienthoai-error , .username-signup-error , .pass-signup-error , .repass-error
+.hovaten-error , .email-error , .sodienthoai-error , .username-signup-error , .pass-signup-error , .repass-error , .select-error , .address-error
 {
     color:red;
     display:none;
     font-size:15px;
 }
 
+.btn-next
+{
+    display:flex;
+    justify-content: flex-end;
+    margin-top:10px;
+}
+#next
+{
+    height:30px;
+    width:15%;
+    background-color:#007bff;
+    font-weight:bold;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.title_address span
+{
+    font-size:40px;
+    font-weight:bold;
+    border-bottom:solid black 3px;
+}
+
+/*Address*/
+#prev
+{
+    background-color:#007bff;
+    font-weight:bold;
+    font-size:20px;
+    width:15%;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.container_address
+{
+    display:none;
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color: #fff;
+    border:solid black 3px;
+    max-width:600px;
+    width:100%;
+    border-radius:10px;
+    z-index:10000;
+    animation-name: form;
+    animation-duration: 1s;
+    padding:10px;
+}
+
+.container_address input
+{
+    height:30px;
+    font-size:20px; 
+}
+
+.input-address
+{
+    margin-top:20px;
+}
+
+.input-address2 select
+{
+    height:30px;
+    font-size:15px;
+}
+
+.input-address2
+{
+    display: flex;
+    gap:30px;
+    margin-top:20px;
+}
+
+.title_address button
+{
+    border:none;
+    font-weight: bold;
+    font-size:20px;
+    color:black;
+    cursor: pointer;
+}
+
+.toLogin
+{
+    text-align: center;
+}
+
 .toLogin a
 {
     color:hsl(0, 0%, 0%);
+    font-size: 20px;
 }
 
+.container_address input[type="submit"]
+{
+    margin-top:20px;
+    background-color:#007bff;
+    font-weight:bold;
+    font-size:20px;
+    width:100%;
+    cursor:pointer;
+}
 
 /*Cart*/
-
-
 
 .trangchu {
     margin-bottom: 20px;
@@ -612,6 +698,7 @@ button[value="closeproduct"]:hover
 }
 
 #cart {
+    display:none;
     max-width: 800px;
     margin: 30px auto;
     background-color: #fff;
@@ -619,11 +706,6 @@ button[value="closeproduct"]:hover
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-#select
-{
-    display:flex;
-    justify-content: center;
 }
 
 #cart-select, #bill-select {
@@ -721,3 +803,110 @@ button[value="closeproduct"]:hover
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+
+.container_payment
+{
+    display:none;
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color: #fff;
+    border:solid black 3px;
+    max-width:600px;
+    width:100%;
+    border-radius:10px;
+    z-index:10000;
+    animation-name: form;
+    animation-duration: 1s;
+    padding:10px;
+}
+
+.input-address input
+{
+    height:30px;
+    font-size:20px; 
+}
+
+.input-address
+{
+    margin-top:20px;
+}
+
+.input-address2 select
+{
+    height:30px;
+    font-size:15px;
+}
+
+.input-address2
+{
+    display: flex;
+    gap:30px;
+    margin-top:20px;
+}
+
+.title_address button
+{
+    border:none;
+    font-weight: bold;
+    font-size:20px;
+    color:black;
+    cursor: pointer;
+}
+
+.container_payment span
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.payment label[for="payment"]
+{
+    font-size:20px;
+    font-weight: bold;
+}
+
+.title_payment
+{
+    border-bottom:solid 2px black;
+    margin-bottom:15px;
+}
+
+.paymentinfo label
+{
+    font-size:20px;
+    font-weight: bold;
+}
+
+.paymentinfo input
+{
+    height:25px;
+    font-size:15px;
+    margin:5px;
+}
+
+.checkaddress
+{
+    margin-top:15px;
+}
+
+#submit_payment
+{
+    width:100%;
+    height:40px;
+    font-size:20px;
+    font-weight: bold;
+    margin-top:15px;
+    border:none;
+    background-color: #007bff;
+    color:#fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit_payment:hover
+{
+    background-color: #0056b3;
+}
+

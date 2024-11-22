@@ -171,42 +171,45 @@
                 <div class="details_signup">
                     <div class="signup">
                         <div class="input-signup">
-                            <label for="hovaten">Họ và tên</label>
-                            <input type="text" name="hovaten" id="hovaten">
+                            <label for="hovaten"><img src="images/icons/id-card-solid.svg" class="icon" alt=""></label>
+                            <input type="text" name="hovaten" id="hovaten" placeholder="Họ và tên">
                             <div class="hovaten-error">Bạn chưa nhập họ và tên</div>
                         </div>
 
                         <div class="input-signup">
-                            <label for="diachi">Địa chỉ</label>
-                            <input type="text" name="diachi" id="diachi">
-                            <div class="diachi-error">Bạn chưa nhập địa chỉ</div>
+                            <label for="diachi"><img src="images/icons/envelope-solid.svg" class="icon" alt=""></label>
+                            <input type="email" name="email" id="email" placeholder="Email">
+                            <div class="email-error">Bạn chưa nhập email</div>
                         </div>
 
                         <div class="input-signup">
-                            <label for="sodienthoai">Số điện thoại</label>
-                            <input type="tel" name="sodienthoai" id="sodienthoai">
+                            <label for="sodienthoai"><img src="images/icons/phone-solid.svg" class="icon" alt=""></label>
+                            <input type="tel" name="sodienthoai" id="sodienthoai" placeholder="Số điện thoại">
                             <div class="sodienthoai-error">Bạn chưa nhập số điện thoại</div>
                         </div>
 
                         <div class="input-signup">
-                            <label for="ten_signup">Tên đăng ký</label>
-                            <input type="text" name="ten_signup" id="ten_signup">
+                            <label for="ten_signup"><img src="images/icons/address-book-solid.svg" class="icon" alt=""></label>
+                            <input type="text" name="ten_signup" id="ten_signup" placeholder="Tên người dùng">
                             <div class="username-signup-error">Bạn chưa nhập tên đăng ký</div>
                         </div>
 
                         <div class="input-signup">
-                            <label for="pass">Mật khẩu</label>
-                            <input type="password" name="pass_signup" id="pass_signup">
+                            <label for="pass"><img src="images/icons/lock-solid.svg" class="icon" alt=""></label>
+                            <input type="password" name="pass_signup" id="pass_signup" placeholder="Mật khẩu">
                             <div class="pass-signup-error">Bạn chưa nhập mật khẩu</div>
                         </div>
 
                         <div class="input-signup">
-                            <label for="repass">Nhập lại mật khẩu</label>
-                            <input type="password" name="repass_signup" id="repass_signup">
+                            <label for="repass"><img src="images/icons/lock-solid.svg" class="icon" alt=""></label>
+                            <input type="password" name="repass_signup" id="repass_signup" placeholder="Nhập lại mật khẩu">
                             <div class="repass-error">Mật khẩu không trùng khớp</div>
                         </div>
 
-                        <input type="submit" id="submit_signup" value="Đăng ký">
+                        <div class="btn-next">
+                            <button type="button" id="next" value="next">Tiếp</button>
+                        </div>
+                        
                         <div class="toLogin">
                             <b>Trở về trang</b>
                             <a href="#">Đăng nhập</a>
@@ -215,6 +218,55 @@
                 </div>
             </form>
         </div>
+
+    <div class="container_address">
+        <form action="">
+            <div class="title_address">
+                <span>Thêm điểm giao hàng</span>
+                <button type="button" onclick="closeAddress();">X</button>
+            </div>
+            
+            <div class="details_address">
+                <div class="input-address">
+                    <input type = "text" id="address" placeholder="Số nhà, tên đường">
+                    <div class="address-error">Số nhà, tên đường không được để trống</div>
+                </div>
+
+                <div class="input-address2">
+                    <select name="city" id="city">
+                        <option value="city" selected>Chọn thành phố</option>
+                        <option value="TP.HCM">TP.HCM</option>
+                    </select>
+
+                    <select name="district" id="district">
+                        <option value="district" selected>Chọn quận/huyện</option>
+                        <option value="Quận 1">Quận 1</option>
+                        <option value="Quận 2">Quận 2</option>
+                        <option value="Quận 3">Quận 3</option>
+                        <option value="Quận 4">Quận 4</option>
+                        <option value="Quận 5">Quận 5</option>
+                        <option value="Quận 6">Quận 6</option>
+                        <option value="Quận 7">Quận 7</option>
+                        <option value="Quận 8">Quận 8</option>
+                        <option value="Quận 9">Quận 9</option>
+                        <option value="Quận 10">Quận 10</option>
+                        <option value="Quận 11">Quận 11</option>
+                        <option value="Quận 12">Quận 12</option>
+                        <option value="Quận Tân Phú">Quận Tân Phú</option>
+                        <option value="Quận Gò Vấp">Quận Gò Vấp</option>
+                        <option value="Quận Bình Tân">Quận Bình Tân</option>
+                        <option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+                        <option value="Quận Phú Nhuận">Quận Phú Nhuận</option>
+                    </select>
+
+                    <div class="select-error">Chưa chọn điểm giao hàng</div>
+                </div>
+            </div>
+            <button type="button" id="prev" class="btn-prev">Trước</button>
+
+            <input type="submit" id="submit_signup" value="Đăng ký">
+        </form>
+    </div>
 
     </body>
 

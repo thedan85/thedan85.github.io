@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Watch Store</title>
         <link rel="stylesheet" href = "css/index.css">
+        <script src="js/cart.js"></script>
     </head>
     
     <body>
@@ -41,10 +42,73 @@
                 <div class="cart-total">Thành tiền:</div>
                 <div id="totalprice"></div>
 
-                <button type="button" class="btn" onclick="checkout();">Thanh toán</button>
+                <button type="button" class="btn" onclick="tieptuc();">Tiếp tục</button>
             </div>
+        </div>
+
+        <div class="container_payment">
+            <form action="" onsubmit="checkout(event);">
+                <div class="title_payment">
+                    <span>Hình thức thanh toán</span>
+                </div>
+                
+                <div class="payment">
+                    <label for="payment" name="payment">Chọn phương thức thanh toán:</label>
+                    
+                    <label for="card">Thẻ tín dụng</label>
+                    <input type="radio" name="payment" id="card" onclick="pay();">
+
+                    <label for="cash">Tiền mặt</label>
+                    <input type="radio" name="payment" id="cash" onclick="pay();">
+
+                    <div class="paymentinfo">
+                        
+                    </div>
+                </div>
+                
+                <div class="details_address">
+                    <div class="input-address">
+                        <input type= "text" id="address" placeholder="Số nhà, tên đường">
+                    </div>
+
+                    <div class="input-address2">
+                        <select name="city" id="city">
+                            <option value="city" selected>Chọn thành phố</option>
+                            <option value="TP.HCM">TP.HCM</option>
+                        </select>
+    
+                        <select name="district" id="district">
+                            <option value="district" selected>Chọn quận/huyện</option>
+                            <option value="Quận 1">Quận 1</option>
+                            <option value="Quận 2">Quận 2</option>
+                            <option value="Quận 3">Quận 3</option>
+                            <option value="Quận 4">Quận 4</option>
+                            <option value="Quận 5">Quận 5</option>
+                            <option value="Quận 6">Quận 6</option>
+                            <option value="Quận 7">Quận 7</option>
+                            <option value="Quận 8">Quận 8</option>
+                            <option value="Quận 9">Quận 9</option>
+                            <option value="Quận 10">Quận 10</option>
+                            <option value="Quận 11">Quận 11</option>
+                            <option value="Quận 12">Quận 12</option>
+                            <option value="Quận Tân Phú">Quận Tân Phú</option>
+                            <option value="Quận Gò Vấp">Quận Gò Vấp</option>
+                            <option value="Quận Bình Tân">Quận Bình Tân</option>
+                            <option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+                            <option value="Quận Phú Nhuận">Quận Phú Nhuận</option>
+                        </select>
+    
+                        <div class="select-error">Vui lòng điền và chọn đầy đủ thông tin</div>
+
+                    </div>
+                    <div class="checkaddress">
+                        <label for="checkbox">Điểm giao hàng lúc đăng ký:</label>
+                        <input type="checkbox" id="checkbox" onclick="checkboxaddress();">
+                    </div>
+                </div>
+                <input type="submit" id="submit_payment" value="Hoàn tất thanh toán">
+            </form>
         </div>
     </body>
     
-    <script src="js/cart.js"></script>
 </html>
