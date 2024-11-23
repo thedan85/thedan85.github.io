@@ -168,6 +168,10 @@ function checkout(event)
         document.getElementsByClassName("select-error")[0].style.display = "block";
         return;
     }
+    else
+    {
+        document.getElementsByClassName("select-error")[0].style.display = "none";
+    }
 
     if(document.getElementById("card").checked)
     {
@@ -246,25 +250,15 @@ function showbill()
         var s='<tr><th>Sản phẩm</th><th>Tổng tiền</th><th>Ngày đặt</th><th>Địa chỉ</th><th>Tình trạng</th></tr>';
 
         for(let i=0;i<bill.length;i++)
-            {
-              try {
-                console.log("loop iteration:", i);
-                if (bill[i].totalprice !== null) {
-                  s+='<tr>'+
-                    '<td><div>'+bill[i].info+'</div></td>'+
-                    '<td>'+currency(bill[i].totalprice)+'</td>'+
-                    '<td>'+bill[i].date+'</td>'+
-                    '<td>'+bill[i].address.address+', '+bill[i].address.city+', '+bill[i].address.district+'</td>'+
-                    '<td>'+bill[i].status+'</td>'+
-                    '</tr>';
-                } else {
-                  console.log("totalprice is null for bill item", i);
-                }
-                console.log("s:", s);
-              } catch (error) {
-                console.error("Error in loop:", error);
-              }
-            }
+        {
+            s+='<tr>'+
+                '<td><div>'+bill[i].info+'</div></td>'+
+                '<td>'+currency(bill[i].totalprice)+'</td>'+
+                '<td>'+bill[i].date+'</td>'+
+                '<td>'+bill[i].address.address+', '+bill[i].address.city+', '+bill[i].address.district+'</td>'+
+                '<td>'+bill[i].status+'</td>'+
+                '</tr>';
+        }
         document.getElementById("bill-items").innerHTML = s;
     }
 }
