@@ -1,4 +1,6 @@
-cart();
+window.onload = function () {
+    cart();
+}
 
 function currency(price) {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -6,9 +8,8 @@ function currency(price) {
 
 function cart()
 {
-    document.getElementById("bill").style.display = "none";
     document.getElementById("cart").style.display = "block";
-
+    document.getElementById("bill").style.display = "none";
     if(localStorage.getItem("cart") == null||localStorage.getItem("cart") == "[]")
     {
         var s='<tr><th>Giỏ hàng trống</th></tr>';
@@ -99,18 +100,17 @@ function pay()
     {
         var s="";
         s+='<label for="cardnumber">Số thẻ:</label>'+
-        '<input type="text" id="cardnumber" placeholder="0000 0000 0000 0000">'+
+        '<input type="text" id="cardnumber" placeholder="0000 0000 0000 0000" maxlength="19">'+
         '<label for="expireddate">Ngày hết hạn:</label>'+
         '<input type="text" id="expireddate" placeholder="MM/YY">'+
         '<label for="cvv">CVV:</label>'+
-        '<input type="text" id="cvv" placeholder="CVV">';
+        '<input type="text" id="cvv" placeholder="CVV" maxlength="3">';
     }
     else if(document.getElementById("cash").checked)
     {
         var s="";
     }
     document.getElementsByClassName("paymentinfo")[0].innerHTML = s;
-
 }
 
 function checkboxaddress()
@@ -129,10 +129,7 @@ function checkboxaddress()
     }
 }
 
-function closepayment()
-{
-    document.getElementsByClassName("container_payment")[0].style.display = "none";
-}
+
 
 function tieptuc()
 {
@@ -163,12 +160,12 @@ function checkout(event)
     
     if(document.getElementById("address").value==""||document.getElementById("city").value=="city"||document.getElementById("district").value=="district")
     {
-        document.getElementById("select-error").style.display = "block";
+        document.getElementsByClassName("select-error")[0].style.display = "block";
         return;
     }
     else if(document.getElementById("card").checked==false&&document.getElementById("cash").checked==false)
     {
-        document.getElementById("select-error").style.display = "block";
+        document.getElementsByClassName("select-error")[0].style.display = "block";
         return;
     }
 
@@ -181,7 +178,7 @@ function checkout(event)
         pay.cvv = document.getElementById("cvv").value;
         if(pay.cardnumber==""||pay.expireddate==""||pay.cvv=="")
         {
-            document.getElementById("select-error").style.display = "block";
+            document.getElementsByClassName("select-error")[0].style.display = "block";
             return;
         }
     }
@@ -199,7 +196,7 @@ function checkout(event)
 
     var cartArray = JSON.parse(localStorage.getItem("cart"));
     var info ='';
-    var totalprice;
+    var totalprice = 0;
     var user = JSON.parse(localStorage.getItem("userlogin"));
 
     for(let i = 0;i<cartArray.length;i++)
@@ -227,9 +224,9 @@ function checkout(event)
         ArrayBill.unshift(bill);
         localStorage.setItem("ArrayBill",JSON.stringify(ArrayBill));
     }
+    document.getElementsByClassName("container_payment")[0].style.display = "none";
     localStorage.removeItem("cart");
     cart();
-    closepayment();
 
 }
 
@@ -238,10 +235,8 @@ function showbill()
 {
     document.getElementById("bill").style.display = "block";
     document.getElementById("cart").style.display = "none";
-
-    var ArrayBill = JSON.parse(localStorage.getItem("ArrayBill"));
-    
-    if(localStorage.getItem("ArrayBill") == null)
+    var bill = JSON.parse(localStorage.getItem("ArrayBill"));
+    if(bill == null)
     {
         var s='<tr><th>Bạn vẫn chưa mua hàng.</th></tr>';
         document.getElementById("bill-items").innerHTML = s;      
@@ -249,18 +244,29 @@ function showbill()
     else
     {
         var s='<tr><th>Sản phẩm</th><th>Tổng tiền</th><th>Ngày đặt</th><th>Địa chỉ</th><th>Tình trạng</th></tr>';
-        for(let i=0;i<ArrayBill.length;i++)
-        {
-            s+='<tr>'+
-				'<td><div>'+ArrayBill[i].info+'</div></td>'+
-				'<td>'+currency(ArrayBill[i].totalprice)+'</td>'+
-                '<td>'+ArrayBill[i].date+'</td>'+
-                '<td>'+ArrayBill[i].address.address+', '+ArrayBill[i].address.city+', '+ArrayBill[i].address.district+'</td>'+
-                '<td>'+ArrayBill[i].status+'</td>'+
-				'</tr>';
-		}
+
+        for(let i=0;i<bill.length;i++)
+            {
+              try {
+                console.log("loop iteration:", i);
+                if (bill[i].totalprice !== null) {
+                  s+='<tr>'+
+                    '<td><div>'+bill[i].info+'</div></td>'+
+                    '<td>'+currency(bill[i].totalprice)+'</td>'+
+                    '<td>'+bill[i].date+'</td>'+
+                    '<td>'+bill[i].address.address+', '+bill[i].address.city+', '+bill[i].address.district+'</td>'+
+                    '<td>'+bill[i].status+'</td>'+
+                    '</tr>';
+                } else {
+                  console.log("totalprice is null for bill item", i);
+                }
+                console.log("s:", s);
+              } catch (error) {
+                console.error("Error in loop:", error);
+              }
+            }
+        document.getElementById("bill-items").innerHTML = s;
     }
-    document.getElementById("bill-items").innerHTML = s;
 }
 
 

@@ -167,6 +167,7 @@ body {
 .search-container {
     text-align: center;
     margin: 20px 0;
+    position:relative;
 }
 
 #search-input {
@@ -176,6 +177,7 @@ body {
     border-radius: 25px;
     font-size: 1.2em;
     transition: 0.3s;
+    margin-bottom:15px;
 }
 
 #search-input:focus {
@@ -184,7 +186,21 @@ body {
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
+#brandfilter
+{
+    font-size:20px;
+    margin-bottom:15px;
+}
 
+.pricefilter span
+{
+    font-size:30px;
+}
+
+.pricefilter input
+{
+    font-size:18px;
+}
 
 /*midmenu*/
 .mid-container {
@@ -222,10 +238,10 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+#myimg
+{
+    height:319.5px;
+    width:auto;
 }
 
 .item .btn {
@@ -383,6 +399,7 @@ button[value="closeproduct"]:hover
     color: #ccc;
     padding: 20px;
     text-align: center;
+    width:100%;
 }
 
 #footer-container h1 {
@@ -677,6 +694,8 @@ button[value="closeproduct"]:hover
     cursor:pointer;
 }
 
+
+
 /*Cart*/
 
 .trangchu {
@@ -697,8 +716,7 @@ button[value="closeproduct"]:hover
     text-decoration: underline;
 }
 
-#cart {
-    display:none;
+#cart{
     max-width: 800px;
     margin: 30px auto;
     background-color: #fff;
@@ -910,3 +928,196 @@ button[value="closeproduct"]:hover
     background-color: #0056b3;
 }
 
+
+/*responsive*/
+@media screen and (max-width: 1200px) {
+    .item {
+        width: calc(33.33% - 20px);
+    }
+
+    .slideshow {
+        width: 85%;
+        height: 400px;
+        margin-top: 200px;
+    }
+
+    #Header h1 {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .item {
+        width: calc(50% - 20px);
+    }
+
+    .slideshow {
+        width: 90%;
+        height: 350px;
+        margin-top: 180px;
+    }
+
+    .productdetails {
+        width: 85%;
+        height: 95%;
+    }
+
+    .productinfo {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #productimg {
+        width: 50%;
+    }
+
+    .input-address2 {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #Header {
+        min-height: 120px;
+        padding: 5px;
+    }
+
+    #Header h1 {
+        font-size: 3.5vw;
+    }
+
+    #Header li {
+        font-size: 2vw;
+        margin-left: 10px;
+    }
+
+    .icon, .topleft-icon {
+        height: 25px;
+        width: 25px;
+    }
+
+    .slideshow {
+        width: 95%;
+        height: 300px;
+        margin-top: 150px;
+    }
+
+    .item {
+        width: calc(100% - 20px);
+    }
+
+    .container_login, .container_signup, .container_address, .container_payment {
+        width: 90%;
+    }
+
+    .input-signup input,
+    .details_login input[name="ten_login"],
+    .details_login input[name="pass_login"] {
+        width: 100%;
+    }
+
+    .productdetails {
+        width: 95%;
+        height: 95%;
+        padding: 15px;
+    }
+
+    #productimg {
+        width: 70%;
+    }
+
+    #productname, #productprice {
+        font-size: 24px;
+    }
+
+    #quanup, #quandown, #quan {
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .toCart {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    #cart {
+        margin: 20px 10px;
+        padding: 10px;
+    }
+
+    #cart-items {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .top-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bottom-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #Header h1 {
+        font-size: 5vw;
+    }
+
+    #Header li {
+        font-size: 3vw;
+    }
+
+    .slideshow {
+        height: 250px;
+        margin-top: 180px;
+    }
+
+    .title_login span,
+    .title_signup span,
+    .title_address span {
+        font-size: 24px;
+    }
+
+    .details_login label,
+    .input-signup input,
+    .input-address input {
+        font-size: 16px;
+    }
+
+    #productname, #productprice {
+        font-size: 20px;
+    }
+
+    #productquantity label {
+        font-size: 18px;
+    }
+
+    .footer-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .midbottom {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .currentPage {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #myimg {
+        height: auto;
+        max-height: 300px;
+        width: 100%;
+        object-fit: contain;
+    }
+}

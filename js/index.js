@@ -155,8 +155,8 @@ button_prev.addEventListener("click" , function toSignup()
 {
     container_signup[0].style.display = "block";
     container_login[0].style.display = "none";
-    document.body.style.opacity = "0.8";
     closeAddress();
+    document.body.style.opacity = "0.8";
 });
 
 const button_login = document.querySelector(".toLogin a");
@@ -349,6 +349,7 @@ submit_signup.addEventListener("click", checkSignup);
 
 function initProduct()
 {
+    localStorage.removeItem('productData');
     const productData = localStorage.getItem('productData'); 
     if(!productData)
     {
@@ -356,10 +357,39 @@ function initProduct()
     {productId:10000, brandid:'casio', img:'images/products/1.jpg', name:'Casio - Nam MTP-1374L-1AVDF', price:1129000}
     ,{productId:10001, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1200WHD-1AVDF', price:1702000}
     ,{productId:10002, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1172L-1AVDF', price:1361000}
-    ,{productId:10003, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1208WHD-1AVDF', price:1908000}
-    ,{productId:10004, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1272L-1AVDF', price:1165000}
-    ,{productId:10005, brandid:'citizen', img:'images/products/4.jpg', name:'Đồng Hồ Citizen - Nữ EU6060-55D', price:3391000}
-    ,{productId:10006, brandid:'citizen', img:'images/products/5.jpg', name:'Đồng Hồ Citizen - Nữ EM0589-88X', price:7293000}
+    ,{productId:10003, brandid:'citizen', img:'images/products/4.jpg', name:'Đồng Hồ Citizen - Nữ EU6060-55D', price:3391000}
+    ,{productId:10004, brandid:'citizen', img:'images/products/5.jpg', name:'Đồng Hồ Citizen - Nữ EM0589-88X', price:7293000}
+    ,{productId:10005, brandid:'casio', img:'images/products/6.jpg', name:'Đồng Hồ Casio - Nam MTP-E500D-1AVDF', price:3343000}
+    ,{productId:10006, brandid:'casio', img:'images/products/7.jpg', name:'Đồng Hồ Casio - Nữ LQ-139L-4B2DF', price:752000}
+    ,{productId:10007, brandid:'casio', img:'images/products/8.jpg', name:'Đồng Hồ Casio - Nam GBA-800UC-5ADR', price:4220000}
+    ,{productId:10008, brandid:'casio', img:'images/products/9.jpg', name:'Đồng Hồ Casio - Nam GD-100GB-1DR', price:3997000}
+    ,{productId:10009, brandid:'casio', img:'images/products/10.jpg', name:'Đồng Hồ Casio - Unisex AQ-230A-7DMQ', price:1425000}
+    ,{productId:10010, brandid:'casio', img:'images/products/11.jpg', name:'Đồng Hồ Casio - Nữ LQ-142-1EDF', price:415000}
+    ,{productId:10011, brandid:'casio', img:'images/products/12.jpg', name:'Đồng Hồ Casio - Nam AE-1002L-1BUDF', price:2302000}
+    ,{productId:10012, brandid:'casio', img:'images/products/13.jpg', name:'Đồng Hồ Casio - Nam MTP-VT01L-1BUDF', price:1182000}
+    ,{productId:10013, brandid:'casio', img:'images/products/14.jpg', name:'Đồng Hồ Casio - Nữ GMA-S2100-4ADR', price:3257000}
+    ,{productId:10014, brandid:'rolex', img:'images/products/15.jpg', name:'Đồng Hồ Rolex - Nữ M278275-0010', price:883000000}
+    ,{productId:10015, brandid:'rolex', img:'images/products/16.jpg', name:'Đồng Hồ Rolex - Nữ 126231-0016', price:275000000}
+    ,{productId:10016, brandid:'rolex', img:'images/products/17.jpg', name:'Đồng Hồ Rolex - Unisex 126233', price:350000000}
+    ,{productId:10017, brandid:'rolex', img:'images/products/18.jpg', name:'Đồng Hồ Rolex - Nam M126710BLNR-0003', price:450000000}
+    ,{productId:10018, brandid:'rolex', img:'images/products/19.jpg', name:'Đồng Hồ Rolex - Nam 50535-0002', price:1027000000}
+    ,{productId:10019, brandid:'rolex', img:'images/products/20.jpg', name:'Đồng Hồ Rolex - Nam M126231-0021', price:550000000}
+    ,{productId:10020, brandid:'citizen', img:'images/products/21.jpg', name:'Đồng Hồ Citizen - Nam BM7565-80E', price:11440000}
+    ,{productId:10021, brandid:'citizen', img:'images/products/22.jpg', name:'Đồng Hồ Citizen - Nữ EO1222-50P', price:9460000}
+    ,{productId:10022, brandid:'citizen', img:'images/products/23.jpg', name:'Đồng Hồ Citizen - Nữ EM0816-88Y', price:7480000}
+    ,{productId:10023, brandid:'citizen', img:'images/products/24.jpg', name:'Đồng Hồ Citizen - Nữ EM0813-86Y', price:8140000}
+    ,{productId:10024, brandid:'citizen', img:'images/products/25.jpg', name:'Đồng Hồ Citizen - Nam AW1723-02E', price:9020000}
+    ,{productId:10025, brandid:'citizen', img:'images/products/26.jpg', name:'Đồng Hồ Citizen - Nam AW1720-51E', price:10340000}
+    ,{productId:10026, brandid:'timex', img:'images/products/27.jpg', name:'Đồng hồ Timex T257719J nữ', price:2325000}
+    ,{productId:10027, brandid:'timex', img:'images/products/28.jpg', name:'Đồng hồ Timex TW4B017009J nam', price:2250000}
+    ,{productId:10028, brandid:'timex', img:'images/products/29.jpg', name:'Đồng hồ Timex T264819J nam', price:2050000}
+    ,{productId:10029, brandid:'timex', img:'images/products/30.jpg', name:'Đồng hồ Timex T218549J nữ', price:1975000}
+    ,{productId:10030, brandid:'timex', img:'images/products/31.jpg', name:'Đồng hồ Timex T216939J nữ', price:1750000}
+    ,{productId:10031, brandid:'timex', img:'images/products/32.jpg', name:'Đồng hồ Timex T2H3819J nữ', price:1980000}
+    ,{productId:10032, brandid:'timex', img:'images/products/33.jpg', name:'Đồng hồ Timex T200719J nữ', price:2490000}
+    ,{productId:10033, brandid:'timex', img:'images/products/34.jpg', name:'Đồng hồ Timex T2H3719J nữ', price:1570000}
+    ,{productId:10034, brandid:'timex', img:'images/products/35.jpg', name:'Đồng hồ Timex T499059J nam', price:3070000}
+    ,{productId:10035, brandid:'timex', img:'images/products/36.jpg', name:'Đồng hồ Timex Expedition T40011 nam', price:1600000}
     ];
     
     localStorage.setItem('productData', JSON.stringify(initProductData));
@@ -411,7 +441,7 @@ function trangphanloai(tranghientai, obj) {
     document.getElementsByClassName("miditem")[0].innerHTML = s;
   }
 
-  function hienthisanphamtheotheloai(obj) {
+function hienthisanphamtheotheloai(obj) {
     var tongsosp = 0;
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
@@ -427,6 +457,7 @@ function trangphanloai(tranghientai, obj) {
     document.getElementsByClassName("midbottom")[0].innerHTML = temp;
     trangphanloai(1,obj);
 }
+
 
 function phantrang(tongsotrang)
 {
@@ -454,7 +485,6 @@ function trang(tranghientai)
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
-
 phantrang(tongsotrang);
 trang(1);
 
@@ -560,11 +590,27 @@ function addtocart(productid)
 
 //search
 const searchInput = document.getElementById("search-input");
+const brandFilter = document.getElementById("brandfilter");
+const priceFrom = document.getElementById("pricefrom");
+const priceTo = document.getElementById("priceto");
+
 let resultSearchArray = [];
 
 const search = function() {
   const searchResult = searchInput.value.toLowerCase();
   resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
+
+  console.log("test0:",resultSearchArray);
+  if (brandFilter.value !== "all") {
+    resultSearchArray = resultSearchArray.filter(product => product.brandid === brandFilter.value);
+    console.log("test1:",resultSearchArray);
+  }
+
+  if (priceFrom.value !== "" && priceTo.value !== "") {
+    resultSearchArray = resultSearchArray.filter(product => product.price >= parseInt(priceFrom.value) && product.price <= parseInt(priceTo.value));
+    console.log("test2:",resultSearchArray);
+  }
+
   const tongsotrang = Math.ceil(resultSearchArray.length / sp1trang);
   let temp ="";
   
@@ -575,7 +621,7 @@ const search = function() {
   document.getElementsByClassName("midbottom")[0].innerHTML = temp;
 };
 
-searchInput.addEventListener("input", search);
+searchInput.addEventListener("input",search)
 
 //Trang tim kiem
 function trangSearch(tranghientai) {
