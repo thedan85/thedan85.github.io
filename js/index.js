@@ -461,8 +461,10 @@ function hienthisanphamtheotheloai(obj) {
 }
 
 
-function phantrang(tongsotrang)
+function phantrang()
 {
+    var productArray = getProductData();
+    let tongsotrang = Math.ceil(productArray.length/sp1trang);
     var s = "";
 
     for(i=1;i<=tongsotrang;i++)
@@ -488,7 +490,7 @@ function trang(tranghientai)
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
-phantrang(tongsotrang);
+phantrang();
 trang(1);
 
 
