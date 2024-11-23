@@ -349,7 +349,6 @@ submit_signup.addEventListener("click", checkSignup);
 
 function initProduct()
 {
-    localStorage.removeItem('productData');
     const productData = localStorage.getItem('productData'); 
     if(!productData)
     {
@@ -392,8 +391,9 @@ function initProduct()
     ,{productId:10035, brandid:'timex', img:'images/products/36.jpg', name:'Đồng hồ Timex Expedition T40011 nam', price:1600000}
     ];
     
-    localStorage.setItem('productData', JSON.stringify(initProductData));
+        localStorage.setItem('productData', JSON.stringify(initProductData));
     }
+
 }
 
 var brand = [
@@ -427,6 +427,7 @@ hienthisanpham();
 
 //Phan trang
 function trangphanloai(tranghientai, obj) {
+    var productArray = getProductData();
     var productsByBrand = productArray.filter(product => product.brandid == obj.id);
     var s = "";
     for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < productsByBrand.length; i++) {
@@ -442,6 +443,7 @@ function trangphanloai(tranghientai, obj) {
   }
 
 function hienthisanphamtheotheloai(obj) {
+    var productArray = getProductData();
     var tongsosp = 0;
     for (i = 0; i < productArray.length; i++) {
       if (productArray[i].brandid == obj.id) {
@@ -472,6 +474,7 @@ function phantrang(tongsotrang)
 }
 function trang(tranghientai)
 {
+    var productArray = getProductData();
     var s="";
     for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
     {
@@ -507,6 +510,7 @@ let decrement = function()
 };
 
 function showProductInfo(productid) {
+    var productArray = getProductData();
     quantityup.addEventListener("click",increment);
     quantitydown.addEventListener("click",decrement);
     
@@ -544,6 +548,7 @@ function closeProductInfo() {
 }
 function addtocart(productid)
 {
+    var productArray = getProductData();
     var product;
     var quantity = document.getElementById("quan");
     for(let i = 0;i<productArray.length;i++)
@@ -597,6 +602,7 @@ const priceTo = document.getElementById("priceto");
 let resultSearchArray = [];
 
 const search = function() {
+  var productArray = getProductData();
   const searchResult = searchInput.value.toLowerCase();
   resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
 
