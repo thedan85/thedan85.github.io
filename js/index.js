@@ -601,32 +601,79 @@ const searchInput = document.getElementById("search-input");
 const brandFilter = document.getElementById("brandfilter");
 const priceFrom = document.getElementById("pricefrom");
 const priceTo = document.getElementById("priceto");
+const midBottom = document.getElementsByClassName("midbottom")[0];
 
+// Biến toàn cục
 let resultSearchArray = [];
 
-const search = function() {
-  const searchResult = searchInput.value.toLowerCase();
-  resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
+// Hàm tìm kiếm sản phẩm
+const search = function () {
+  // Lấy giá trị tìm kiếm
+  const searchResult = searchInput.value.trim().toLowerCase();
 
+  // Lọc sản phẩm theo tên
+  resultSearchArray = productArray.filter(product =>
+    product.name.toLowerCase().includes(searchResult)
+  );
+
+  // Lọc sản phẩm theo thương hiệu
   if (brandFilter.value !== "all") {
-    resultSearchArray = resultSearchArray.filter(product => product.brandid === brandFilter.value);
+    resultSearchArray = resultSearchArray.filter(
+      product => product.brandid === brandFilter.value
+    );
   }
 
-  if (priceFrom.value !== "" && priceTo.value !== "") {
-    resultSearchArray = resultSearchArray.filter(product => product.price >= parseInt(priceFrom.value) && product.price <= parseInt(priceTo.value));
+  // Lọc sản phẩm theo giá
+  const minPrice = parseFloat(priceFrom.value) || 0; // Giá tối thiểu
+  const maxPrice = parseFloat(priceTo.value) || Infinity; // Giá tối đa
+
+  resultSearchArray = resultSearchArray.filter(
+    product => product.price >= minPrice && product.price <= maxPrice
+  );
+
+  // Tính tổng số trang
+  const totalPages = Math.ceil(resultSearchArray.length / sp1trang);
+  let paginationHTML = "";
+
+  // Tạo các nút phân trang
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHTML += `<div class="currentPage" onclick="trangSearch(${i})">${i}</div>`;
   }
 
-  const tongsotrang = Math.ceil(resultSearchArray.length / sp1trang);
-  let temp ="";
-  
-  for (let i = 1; i <= tongsotrang; i++) {
-    temp+=`<div class="currentPage" onclick="trangSearch(${i})">${i}</div>`;
-  }
+  // Gọi hàm hiển thị trang đầu tiên
   trangSearch(1);
-  document.getElementsByClassName("midbottom")[0].innerHTML = temp;
+
+  // Hiển thị phân trang
+  midBottom.innerHTML = paginationHTML;
 };
 
-searchInput.addEventListener("input",search)
+// Hàm hiển thị sản phẩm theo trang
+function trangSearch(page) {
+  const start = (page - 1) * sp1trang;
+  const end = start + sp1trang;
+  const productsToShow = resultSearchArray.slice(start, end);
+
+  // Render sản phẩm (giả sử có một div `product-list` để hiển thị sản phẩm)
+  const productList = document.getElementById("product-list");
+  if (productList) {
+    productList.innerHTML = productsToShow
+      .map(
+        product =>
+          `<div class="product-item">
+             <h3>${product.name}</h3>
+             <p>Brand: ${product.brandid}</p>
+             <p>Price: $${product.price.toFixed(2)}</p>
+           </div>`
+      )
+      .join("");
+  }
+}
+
+// sự kiện tìm kiếm
+searchInput.addEventListener("input", search);
+brandFilter.addEventListener("change", search);
+priceFrom.addEventListener("input", search);
+priceTo.addEventListener("input", search);
 
 //Trang tim kiem
 function trangSearch(tranghientai) {
