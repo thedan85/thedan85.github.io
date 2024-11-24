@@ -461,6 +461,11 @@ function applyOrderDateFilter() {
     } else {
         alert("Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.");
     }
+
+    if (startDate && endDate && new Date(endDate) < new Date(startDate)) {
+        alert('Ngày kết thúc không được trước ngày bắt đầu. Vui lòng kiểm tra lại!');
+        return; // Dừng xử lý nếu có lỗi
+    }
 }
 
 function filterOrdersByDate(startDate, endDate) {
@@ -579,7 +584,12 @@ function applyStatisticsFilter() {
     } else {
         alert("Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.");
     }
+    if (startDate && endDate && new Date(endDate) < new Date(startDate)) {
+        alert('Ngày kết thúc không được trước ngày bắt đầu. Vui lòng kiểm tra lại!');
+        return; // Dừng xử lý nếu có lỗi
+    }
 }
+    
 
 function filterStatisticsByDate(startDate, endDate) {
     const orders = JSON.parse(localStorage.getItem('ArrayBill')) || [];

@@ -87,6 +87,12 @@ body {
     width:30px;
 }
 
+.icon-logo
+{
+    height:100px;
+    width:100px;
+}
+
 .icon img
 {
     display:block;
@@ -396,7 +402,7 @@ button[value="closeproduct"]:hover
 
 /*Footer*/
 #footer-container {
-    background-color: #333;
+    background-color: black;
     color: #ccc;
     padding: 20px;
     text-align: center;
