@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Điều Khiển Quản Trị</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="login-container">
+        <h2>Đăng Nhập Quản Trị</h2>
+        <form id="login-form">
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="button" onclick="login()">Đăng Nhập</button>
+        </form>
+    </div>
+
+    <div id="dashboard" style="display: none;">
+        <h1>Bảng Điều Khiển Quản Trị</h1>
+        <div id="menu">
+            <button onclick="showSection('user-management')">Quản Lý Người Dùng</button>
+            <button onclick="showSection('product-management')">Quản Lý Sản Phẩm</button>
+            <button onclick="showSection('order-management')">Quản Lý Đơn Hàng</button>
+            <button onclick="showSection('statistics')">Thống Kê</button>
+            <button onclick="logout()">Đăng Xuất</button>
+        </div>
+
+        <div id="user-management" class="section" style="display: none;">
+            <h2>Quản Lý Người Dùng</h2>
+            <button onclick="showAddUserForm()">Thêm Người Dùng</button>
+            <div id="user-list"></div>
+        </div>
+
+        <div id="product-management" class="section" style="display: none;">
+            <h2>Quản Lý Sản Phẩm</h2>
+            <button onclick="showAddProductForm()">Thêm Sản Phẩm</button>
+            <div id="product-list"></div>
+        </div>
+
+        <div id="order-management" class="section" style="display: none;">
+            <h2>Quản Lý Đơn Hàng</h2>
+            <div id="order-filter"></div>
+            <button onclick="showOrderFilterForm()">Lọc Đơn Hàng Theo Ngày</button>
+            <button onclick="showStatusFilterForm()">Lọc Theo Tình Trạng</button>
+            <button onclick="showDistrictFilterForm()">Lọc Theo Quận</button>
+            <div id="order-list"></div>
+        </div>
+
+        <div id="statistics" class="section" style="display: none;">
+            <h3>Thống Kê Kinh Doanh</h3>
+            <label for="start_date">Ngày Bắt Đầu:</label>
+            <input type="date" id="start_date">
+            <label for="end_date">Ngày Kết Thúc:</label>
+            <input type="date" id="end_date">
+            <button onclick="applyStatisticsFilter()">Lọc Thống Kê</button>
+            <div id="statistics-results"></div>
+            <div id="customer-order-details" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

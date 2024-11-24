@@ -168,10 +168,6 @@ function checkout(event)
         document.getElementsByClassName("select-error")[0].style.display = "block";
         return;
     }
-    else
-    {
-        document.getElementsByClassName("select-error")[0].style.display = "none";
-    }
 
     if(document.getElementById("card").checked)
     {
@@ -212,7 +208,8 @@ function checkout(event)
     var user = JSON.parse(localStorage.getItem("userlogin"));
 
     var date = new Date();
-    var d = date.getDate()+'-'+date.getMonth()+'-'+date.getFullYear();
+    const month = date.getMonth() +1;
+    var d = date.getDate()+'-'+month+'-'+date.getFullYear();
 
     if(localStorage.getItem("ArrayBill")==null)
     {
@@ -240,24 +237,33 @@ function showbill()
     document.getElementById("bill").style.display = "block";
     document.getElementById("cart").style.display = "none";
     var bill = JSON.parse(localStorage.getItem("ArrayBill"));
+    let count = 0;
+
     if(bill == null)
     {
         var s='<tr><th>Bạn vẫn chưa mua hàng.</th></tr>';
         document.getElementById("bill-items").innerHTML = s;      
     }
     else
-    {
+    {    
         var s='<tr><th>Sản phẩm</th><th>Tổng tiền</th><th>Ngày đặt</th><th>Địa chỉ</th><th>Tình trạng</th></tr>';
 
         for(let i=0;i<bill.length;i++)
+            {
+                if(bill[i].username == JSON.parse(localStorage.getItem("userlogin")).username) {
+                  s+='<tr>'+
+                    '<td><div>'+bill[i].info+'</div></td>'+
+                    '<td>'+currency(bill[i].totalprice)+'</td>'+
+                    '<td>'+bill[i].date+'</td>'+
+                    '<td>'+bill[i].address.address+', '+bill[i].address.city+', '+bill[i].address.district+'</td>'+
+                    '<td>'+bill[i].status+'</td>'+
+                    '</tr>';
+                    count++;
+                }
+            }
+        if(count == 0)
         {
-            s+='<tr>'+
-                '<td><div>'+bill[i].info+'</div></td>'+
-                '<td>'+currency(bill[i].totalprice)+'</td>'+
-                '<td>'+bill[i].date+'</td>'+
-                '<td>'+bill[i].address.address+', '+bill[i].address.city+', '+bill[i].address.district+'</td>'+
-                '<td>'+bill[i].status+'</td>'+
-                '</tr>';
+            s='<tr><th>Bạn vẫn chưa mua hàng.</th></tr>';
         }
         document.getElementById("bill-items").innerHTML = s;
     }

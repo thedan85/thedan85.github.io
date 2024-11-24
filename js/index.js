@@ -31,30 +31,28 @@ setInterval(nextImage, 3000);
 
 
 const userArray = JSON.parse(localStorage.getItem("users"));
-//Login
+
+// Login
 const profile_icon = document.getElementsByClassName("icon");
 const container_login = document.getElementsByClassName("container_login");
 const button_close = document.querySelectorAll("button[value='close']");
 
 profile_icon[0].onclick = showLogin;
-function showLogin()
-{
-
+function showLogin() {
     container_login[0].style.display = "block";
     container_signup[0].style.display = "none";
     container_address[0].style.display = "none";
     document.body.style.opacity = "0.8";
 }
 
-function closeLogin()
-{
+function closeLogin() {
     container_login[0].style.display = "none";
     document.body.style.opacity = "1";
 }
 
 button_close[0].onclick = closeLogin;
 
-//Login
+// Login
 const username = document.getElementById("ten_login");
 const password = document.getElementById("pass_login");
 const username_error = document.querySelector(".username-error");
@@ -64,44 +62,50 @@ const submit_button = document.getElementById("submit_login");
 submit_button.addEventListener("click", checkLogin);
 function checkLogin(event) {
     event.preventDefault();
-  
+
     if (username.value == "" || password.value == "") {
-      username_error.style.display = "block";
-      password_error.style.display = "block";
-      return;
+        username_error.style.display = "block";
+        password_error.style.display = "block";
+        return;
     }
-  
+
     if (username.value != "") {
-      username_error.style.display = "none";
+        username_error.style.display = "none";
     }
-  
+
     if (password.value != "") {
-      password_error.style.display = "none";
+        password_error.style.display = "none";
     }
-    
-    if(userArray!=null&&userArray!=[])
-    {
-        for (let i = 0; i < userArray.length; i++) {
-        if (username.value == userArray[i].username) {
-            if (password.value == userArray[i].password) {
-            closeLogin();
-            localStorage.setItem("userlogin", JSON.stringify(userArray[i]));
-            window.location.reload();
-            alert("Đăng nhập thành công!");
-            return true;
+
+    if (JSON.parse(localStorage.getItem("users")) != null && JSON.parse(localStorage.getItem("users")) != []) {
+        for (let i = 0; i < (JSON.parse(localStorage.getItem("users"))).length; i++) {
+            if (username.value == (JSON.parse(localStorage.getItem("users")))[i].username) {
+                if ((JSON.parse(localStorage.getItem("users")))[i].isBlocked) {
+                    username_error.innerText = "Tài khoản của bạn đã bị khóa.";
+                    username_error.style.display = "block";
+                    return false;
+                }
+                if (password.value == (JSON.parse(localStorage.getItem("users")))[i].password) {
+                    closeLogin();
+                    localStorage.setItem("userlogin", JSON.stringify((JSON.parse(localStorage.getItem("users")))[i]));
+                    window.location.reload();
+                    alert("Đăng nhập thành công!");
+                    return true;
+                }
             }
-        }
         }
         username_error.innerText = "Sai thông tin đăng nhập.";
         username_error.style.display = "block";
     }
 }
 
-function logout(url){
-	localStorage.removeItem('userlogin');
-	localStorage.removeItem('cart');
-	location.href=url;
+function logout(url) {
+    localStorage.removeItem('userlogin');
+    localStorage.removeItem('cart');
+    location.href = url;
 }
+
+
 
 function checkLogin2()
 {
@@ -318,17 +322,17 @@ function checkSignup()
         address_signup.city = city.value;
         address_signup.district = district.value;
         var user = {username: ten_signup.value, password: pass_signup.value, fullname: hovaten.value, address: address_signup, email: email.value, phone: sodienthoai.value , datesignup: datesignup};
-        if(userArray!=null&&userArray!=[]){
-            for(let i = 0 ; i<userArray.length;i++)
+        if(JSON.parse(localStorage.getItem("users"))!=null&&JSON.parse(localStorage.getItem("users"))!=[]){
+            for(let i = 0 ; i<(JSON.parse(localStorage.getItem("users"))).length;i++)
             {
-                if(ten_signup.value==userArray[i].username)
+                if(ten_signup.value==(JSON.parse(localStorage.getItem("users")))[i].username)
                 {
                     username_signup_error.innerText = "Tài khoản đã có người đăng kí";
                     username_signup_error.style.display = "block";
                     return false;
                 }
             }
-            var userArray2 = userArray;
+            var userArray2 = JSON.parse(localStorage.getItem("users"));
             userArray2.push(user);
             localStorage.setItem('users', JSON.stringify(userArray2));
             alert("Đăng ký thành công!");
@@ -347,12 +351,10 @@ submit_signup.addEventListener("click", checkSignup);
 
 //Products
 
-function initProduct()
-{
-    const productData = localStorage.getItem('productData'); 
-    if(!productData)
-    {
-        const initProductData =[
+function initProduct() {
+    const productData = localStorage.getItem('products'); 
+    if (!productData) {
+        const initProductData = [
     {productId:10000, brandid:'casio', img:'images/products/1.jpg', name:'Casio - Nam MTP-1374L-1AVDF', price:1129000}
     ,{productId:10001, brandid:'casio', img:'images/products/2.jpg', name:'Casio - Nam AE-1200WHD-1AVDF', price:1702000}
     ,{productId:10002, brandid:'casio', img:'images/products/3.jpg', name:'Casio - Nam MTP-1172L-1AVDF', price:1361000}
@@ -391,9 +393,8 @@ function initProduct()
     ,{productId:10035, brandid:'timex', img:'images/products/36.jpg', name:'Đồng hồ Timex Expedition T40011 nam', price:1600000}
     ];
     
-        localStorage.setItem('productData', JSON.stringify(initProductData));
+    localStorage.setItem('products', JSON.stringify(initProductData));
     }
-
 }
 
 var brand = [
@@ -403,96 +404,98 @@ var brand = [
     { brandid: 'timex', brandname: "Timex" },
   ]
 
-function getProductData() {
-    const productData = localStorage.getItem('productData');
-    return JSON.parse(productData);
-  }
+  function getProductData() {
+    const productData = localStorage.getItem('products');
+    return productData ? JSON.parse(productData) : [];
+}
+
 const sp1trang = 12;
 var productArray = getProductData();
-let tongsotrang = Math.ceil(productArray.length/sp1trang);
+let tongsotrang = Math.ceil(productArray.length / sp1trang);
 
 function hienthisanpham() {
-  
-    var s = "";
-    for (i = 0; i < brand.length; i++) {
-      var a = '<a href="#"><li id="' + brand[i].brandid + '" onclick="hienthisanphamtheotheloai(this);">' + brand[i].brandname + '</li></a>';
-      s += a;
+    let s = "";
+    for (let i = 0; i < brand.length; i++) {
+        let a = `<a href="#"><li id="${brand[i].brandid}" onclick="hienthisanphamtheotheloai(this);">${brand[i].brandname}</li></a>`;
+        s += a;
     }
-  
-    s = '<ul>' + s + '</ul>';
+    s = `<ul>${s}</ul>`;
     document.getElementsByClassName("botright")[0].innerHTML = s;
 }
 
 hienthisanpham();
 
-//Phan trang
+// Phân trang sản phẩm theo thương hiệu
 function trangphanloai(tranghientai, obj) {
-    var productArray = getProductData();
     var productsByBrand = productArray.filter(product => product.brandid == obj.id);
-    var s = "";
+    let s = "";
     for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < productsByBrand.length; i++) {
-      s += `
-        <div class="item">
-          <img id="myimg" src="${productsByBrand[i].img}" width="30%">
-          <div>${productsByBrand[i].name}</div>
-          <div>${currency(productsByBrand[i].price)}</div>
-          <button type="button" class="btn" onclick="showProductInfo(${productsByBrand[i].productId});">Chi tiết</button>
+        const product = productsByBrand[i];
+        const imageSrc = product.img ? product.img : "https://via.placeholder.com/150";
+
+
+        s += `<div class="item">
+            <img id="myimg" src="${imageSrc}" width="30%" alt="Hình ảnh sản phẩm">
+            <div>${product.name}</div>
+            <div>${currency(product.price)}</div>
+            <button type="button" class="btn" onclick="showProductInfo(${product.productId});">Chi tiết</button>
         </div>`;
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
-  }
+}
 
 function hienthisanphamtheotheloai(obj) {
-    var productArray = getProductData();
-    var tongsosp = 0;
-    for (i = 0; i < productArray.length; i++) {
-      if (productArray[i].brandid == obj.id) {
-        tongsosp++;
-      }
-    }
-    let tongsotrang = Math.ceil(tongsosp / sp1trang);
-    var temp="";
-    for(let i=1;i<=tongsotrang;i++)
-    {
-        temp+=`<div class="currentPage" onclick="trangphanloai(`+i+`,${obj.id})">`+i+`</div>`
+    let productsByBrand = productArray.filter(product => product.brandid == obj.id);
+    let tongsotrang = Math.ceil(productsByBrand.length / sp1trang);
+    let temp = "";
+    for (let i = 1; i <= tongsotrang; i++) {
+        temp += `<div class="currentPage" onclick="trangphanloai(${i}, ${obj.id})">${i}</div>`;
     }
     document.getElementsByClassName("midbottom")[0].innerHTML = temp;
-    trangphanloai(1,obj);
+    trangphanloai(1, obj);
 }
 
-
-function phantrang()
-{
-    var productArray = getProductData();
-    let tongsotrang = Math.ceil(productArray.length/sp1trang);
-    var s = "";
-
-    for(i=1;i<=tongsotrang;i++)
-    {
-        s+='<div class="currentPage" onclick="trang('+i+')">'+i+'</div>';
+function phantrang(tongsotrang) {
+    let s = "";
+    for (let i = 1; i <= tongsotrang; i++) {
+        s += `<div class="currentPage" onclick="trang(${i})">${i}</div>`;
     }
     document.getElementsByClassName("midbottom")[0].innerHTML = s;
-    
 }
-function trang(tranghientai)
-{
-    var productArray = getProductData();
-    var s="";
-    for(i=(tranghientai-1)*sp1trang;i<tranghientai*sp1trang&&i<productArray.length;i++)
-    {
-            s+=`<div class="item">
-            <img id="myimg" src="${productArray[i].img}"  width="30%">
-            <div>${productArray[i].name}</div>
-            <div>${currency(productArray[i].price)}</div>
-            <button type="button" class="btn" onclick="showProductInfo(${productArray[i].productId});">Chi tiết</button>
-            </div>`;
-            
+
+function trang(tranghientai) {
+    let s = "";
+    for (let i = (tranghientai - 1) * sp1trang; i < tranghientai * sp1trang && i < productArray.length; i++) {
+        const product = productArray[i];
+        const imageSrc = product.img ? product.img : "https://via.placeholder.com/150";
+
+        s += `<div class="item">
+            <img id="myimg" src="${imageSrc}" width="30%" alt="Hình ảnh sản phẩm">
+            <div>${product.name}</div>
+            <div>${currency(product.price)}</div>
+            <button type="button" class="btn" onclick="showProductInfo(${product.productId});">Chi tiết</button>
+        </div>`;
     }
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
-phantrang();
-trang(1);
 
+function showProductInfo(productId) {
+    const product = productArray.find(p => p.productId === productId);
+    if (product) {
+        alert(`Tên sản phẩm: ${product.name}\nGiá: ${currency(product.price)}\nHình ảnh: ${product.img}`);
+    }
+}
+
+function currency(value) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+}
+
+// Hàm khởi tạo để hiển thị sản phẩm khi trang được tải
+window.onload = function() {
+    initProduct();
+    phantrang(tongsotrang);
+    trang(1);
+};
 
 //products detail
 const quantityup= document.getElementById("quanup");
@@ -512,7 +515,6 @@ let decrement = function()
 };
 
 function showProductInfo(productid) {
-    var productArray = getProductData();
     quantityup.addEventListener("click",increment);
     quantitydown.addEventListener("click",decrement);
     
@@ -550,7 +552,6 @@ function closeProductInfo() {
 }
 function addtocart(productid)
 {
-    var productArray = getProductData();
     var product;
     var quantity = document.getElementById("quan");
     for(let i = 0;i<productArray.length;i++)
@@ -604,13 +605,11 @@ const priceTo = document.getElementById("priceto");
 let resultSearchArray = [];
 
 const search = function() {
-  var productArray = getProductData();
   const searchResult = searchInput.value.toLowerCase();
   resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
 
   if (brandFilter.value !== "all") {
     resultSearchArray = resultSearchArray.filter(product => product.brandid === brandFilter.value);
-    console.log("test1:",resultSearchArray);
   }
 
   if (priceFrom.value !== "" && priceTo.value !== "") {

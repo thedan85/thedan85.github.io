@@ -238,11 +238,12 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-#myimg
-{
-    height:319.5px;
-    width:auto;
+#myimg {
+    width: 100%;
+    height: auto; 
+    max-height: 300px; 
 }
+
 
 .item .btn {
     margin-top: 10px;
@@ -361,7 +362,6 @@ button[value="closeproduct"]:hover
     font-size: 20px;
     font-weight: bold;
     background-color: #007bff;
-    color:#fff;
 }
 
 
@@ -1115,10 +1115,6 @@ button[value="closeproduct"]:hover
 }
 
 @media screen and (max-width: 1200px) {
-    #myimg {
-        height: auto;
-        max-height: 300px;
-        width: 100%;
-        object-fit: contain;
-    }
+    
+    
 }
