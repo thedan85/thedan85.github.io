@@ -647,28 +647,6 @@ const search = function () {
   midBottom.innerHTML = paginationHTML;
 };
 
-// Hàm hiển thị sản phẩm theo trang
-function trangSearch(page) {
-  const start = (page - 1) * sp1trang;
-  const end = start + sp1trang;
-  const productsToShow = resultSearchArray.slice(start, end);
-
-  // Render sản phẩm (giả sử có một div `product-list` để hiển thị sản phẩm)
-  const productList = document.getElementById("product-list");
-  if (productList) {
-    productList.innerHTML = productsToShow
-      .map(
-        product =>
-          `<div class="product-item">
-             <h3>${product.name}</h3>
-             <p>Brand: ${product.brandid}</p>
-             <p>Price: $${product.price.toFixed(2)}</p>
-           </div>`
-      )
-      .join("");
-  }
-}
-
 // sự kiện tìm kiếm
 searchInput.addEventListener("input", search);
 brandFilter.addEventListener("change", search);
