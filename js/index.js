@@ -608,7 +608,6 @@ const search = function() {
   const searchResult = searchInput.value.toLowerCase();
   resultSearchArray = productArray.filter(product => product.name.toLowerCase().includes(searchResult));
 
-  console.log("test0:",resultSearchArray);
   if (brandFilter.value !== "all") {
     resultSearchArray = resultSearchArray.filter(product => product.brandid === brandFilter.value);
     console.log("test1:",resultSearchArray);
@@ -616,7 +615,6 @@ const search = function() {
 
   if (priceFrom.value !== "" && priceTo.value !== "") {
     resultSearchArray = resultSearchArray.filter(product => product.price >= parseInt(priceFrom.value) && product.price <= parseInt(priceTo.value));
-    console.log("test2:",resultSearchArray);
   }
 
   const tongsotrang = Math.ceil(resultSearchArray.length / sp1trang);
