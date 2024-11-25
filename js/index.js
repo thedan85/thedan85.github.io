@@ -175,6 +175,7 @@ button_login.addEventListener("click" , function toLogin()
 const hovaten = document.getElementById("hovaten");
 const email = document.getElementById("email");
 const sodienthoai = document.getElementById("sodienthoai");
+sodienthoai.pattern = "0[0-9]{9}";
 const ten_signup = document.getElementById("ten_signup");
 const pass_signup = document.getElementById("pass_signup");
 const repass_signup = document.getElementById("repass_signup");
@@ -197,7 +198,7 @@ function checkSignup()
     {
         event.preventDefault();
     }
-    else if((sodienthoai.value.length!=10||sodienthoai.pattern!="0[0-9]{9}")||repass_signup.value!=pass_signup.value)
+    else if(repass_signup.value!=pass_signup.value)
     {
         event.preventDefault();
     }
@@ -254,11 +255,13 @@ function checkSignup()
 
     if(sodienthoai.value!="")
     {
-        if(sodienthoai.value.length!=10&&sodienthoai.pattern!="0[0-9]{9}")
+        const pattern = /^0\d{9}$/;
+        if(!pattern.test(sodienthoai.value))
         {
             sodienthoai_error.innerText="Số điện thoại không đúng";
             sodienthoai_error.style.display = "block";
             flag = false;
+            event.preventDefault();
         }
         else
         {

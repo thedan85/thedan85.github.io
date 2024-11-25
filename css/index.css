@@ -844,6 +844,8 @@ button[value="closeproduct"]:hover
     padding:10px;
 }
 
+
+
 .input-address input
 {
     height:30px;
@@ -893,6 +895,22 @@ button[value="closeproduct"]:hover
 {
     border-bottom:solid 2px black;
     margin-bottom:15px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.title_payment button
+{
+    border:none;
+    font-weight: bold;
+    font-size:20px;
+    color:black;
+    cursor: pointer;
+}
+
+.title_payment:hover button
+{
+    color:#007bff;
 }
 
 .paymentinfo label

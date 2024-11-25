@@ -269,4 +269,8 @@ function showbill()
     }
 }
 
+function closepayment()
+{
+    document.getElementsByClassName("container_payment")[0].style.display = "none";
+}
 
