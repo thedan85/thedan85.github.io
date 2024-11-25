@@ -134,7 +134,7 @@ body {
     position:relative;
     width:70%;
     height:500px;
-    margin-top:250px;
+    margin-top:300px;
     z-index:0;
 }
 
@@ -409,10 +409,6 @@ button[value="closeproduct"]:hover
     width:100%;
 }
 
-#footer-container h1 {
-    color: #007bff;
-    margin-bottom: 10px;
-}
 
 #footer-container ul {
     list-style: none;
