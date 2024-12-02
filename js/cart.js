@@ -29,12 +29,12 @@ function cart()
 					'</td>'+
 					'<td>'+currency(cart[i].price)+'</td>'+
 					'<td>'+
-						'<button onClick="decrement2('+cart[i].productId+')">-</button>'+
+						'<button onclick="decrement2('+cart[i].productId+')">-</button>'+
 						'<input id="quantity" type="text" disabled value="'+cart[i].quantity+'" onchange="updateCart(this.value,'+cart[i].productId+')">'+
-						'<button onClick="increment2('+cart[i].productId+')">+</button>'+
+						'<button onclick="increment2('+cart[i].productId+')">+</button>'+
 					'</td>'+
 					'<td>'+currency(cart[i].price*cart[i].quantity)+'</td>'+
-					'<td><button onClick="deletecartitem('+cart[i].productId+')">&times;</button></td>'+
+					'<td><button onclick="deletecartitem('+cart[i].productId+')">&times;</button></td>'+
 				'</tr>';
 			totalprice+=cart[i].price*cart[i].quantity;
 		}

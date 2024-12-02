@@ -128,9 +128,6 @@ body {
 
 .slideshow
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position:relative;
     width:70%;
     height:500px;
@@ -442,7 +439,7 @@ button[value="closeproduct"]:hover
     border-radius:10px;
     z-index:10000;
     animation-name: form;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 @keyframes form
@@ -534,7 +531,7 @@ button[value="closeproduct"]:hover
     border-radius:10px;
     z-index:10000;
     animation-name: form;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 .details_signup
 {
@@ -640,7 +637,7 @@ button[value="closeproduct"]:hover
     border-radius:10px;
     z-index:10000;
     animation-name: form;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     padding:10px;
 }
 
@@ -1087,10 +1084,6 @@ button[value="closeproduct"]:hover
         text-align: center;
     }
 
-    #Header h1 {
-        font-size: 5vw;
-    }
-
     #Header li {
         font-size: 3vw;
     }
@@ -1129,7 +1122,6 @@ button[value="closeproduct"]:hover
         flex-wrap: wrap;
         gap: 10px;
     }
-
     .currentPage {
         font-size: 20px;
     }

@@ -1,6 +1,7 @@
 initProduct();
 checkLogin2();
 
+
 function currency(price) {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 }
@@ -17,19 +18,10 @@ function nextImage()
     images[current].classList.add("active");
 }
 
-function prevImage()
-{
-    images[current].classList.remove("active");
-    current = (current - 1 + images.length) % images.length;
-    images[current].classList.add("active");
-}
-
 setInterval(nextImage, 3000);
 
 
 //UserArray
-
-
 const userArray = JSON.parse(localStorage.getItem("users"));
 
 // Login
@@ -458,6 +450,7 @@ function hienthisanphamtheotheloai(obj) {
     trangphanloai(1, obj);
 }
 
+//trang chu
 function phantrang(tongsotrang) {
     let s = "";
     for (let i = 1; i <= tongsotrang; i++) {
@@ -482,12 +475,7 @@ function trang(tranghientai) {
     document.getElementsByClassName("miditem")[0].innerHTML = s;
 }
 
-function showProductInfo(productId) {
-    const product = productArray.find(p => p.productId === productId);
-    if (product) {
-        alert(`Tên sản phẩm: ${product.name}\nGiá: ${currency(product.price)}\nHình ảnh: ${product.img}`);
-    }
-}
+
 
 function currency(value) {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
@@ -606,7 +594,6 @@ const priceFrom = document.getElementById("pricefrom");
 const priceTo = document.getElementById("priceto");
 const midBottom = document.getElementsByClassName("midbottom")[0];
 
-// Biến toàn cục
 let resultSearchArray = [];
 
 // Hàm tìm kiếm sản phẩm
@@ -634,23 +621,18 @@ const search = function () {
     product => product.price >= minPrice && product.price <= maxPrice
   );
 
-  // Tính tổng số trang
   const totalPages = Math.ceil(resultSearchArray.length / sp1trang);
   let paginationHTML = "";
 
-  // Tạo các nút phân trang
   for (let i = 1; i <= totalPages; i++) {
     paginationHTML += `<div class="currentPage" onclick="trangSearch(${i})">${i}</div>`;
   }
 
-  // Gọi hàm hiển thị trang đầu tiên
   trangSearch(1);
 
-  // Hiển thị phân trang
   midBottom.innerHTML = paginationHTML;
 };
 
-// sự kiện tìm kiếm
 searchInput.addEventListener("input", search);
 brandFilter.addEventListener("change", search);
 priceFrom.addEventListener("input", search);
