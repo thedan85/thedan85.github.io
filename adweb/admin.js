@@ -204,13 +204,12 @@ function toggleBlockUser(userId) {
 }
 
 function loadProducts() {
-    // Tải và hiển thị danh sách sản phẩm
     let productListHtml = '<table><thead><tr><th>Tên sản phẩm</th><th>Giá</th><th>Hình ảnh</th><th>Hành động</th></tr></thead><tbody>';
     products.forEach(product => {
         productListHtml += `<tr>
             <td>${product.name}</td>
             <td>${product.price}</td>
-            <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+            <td><img src="${product.img}" alt="${product.name}" width="50"></td>
             <td>
                 <button onclick="showEditProductForm(${product.productId})">Sửa</button>
                 <button onclick="deleteProduct(${product.productId})">Xóa</button>
@@ -254,9 +253,10 @@ function addProductFromForm() {
     const imageInput = document.getElementById('product_image');
     const image = imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : '';
 
-
-    if (name && price && image &&brand!='brand') {
-        addProduct(name, price, image,brand);
+    if (name && price && image && brand !== 'brand') {
+        addProduct(name, price, image, brand);
+    } else {
+        alert('Vui lòng điền đầy đủ thông tin và chọn hãng sản phẩm');
     }
 }
 
@@ -268,7 +268,7 @@ function addProduct(name, price, image ,brand) {
 
 
 function showEditProductForm(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = products.find(p => p.productId === productId);
     if (product) {
         const formHtml = `
             <form id="edit-product-form">
@@ -289,17 +289,17 @@ function showEditProductForm(productId) {
 }
 
 function editProductFromForm(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = products.find(p => p.productId === productId);
     if (product) {
         const newName = document.getElementById('edit_product_name').value;
         const newPrice = document.getElementById('edit_product_price').value;
         const imageInput = document.getElementById('edit_product_image');
-        const newImage = imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : product.image;
+        const newImage = imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : product.img;
 
         if (newName && newPrice) {
             product.name = newName;
             product.price = newPrice;
-            product.image = newImage;
+            product.img = newImage;
             localStorage.setItem('products', JSON.stringify(products));
             loadProducts();
         }
@@ -308,7 +308,7 @@ function editProductFromForm(productId) {
 
 function deleteProduct(productId) {
     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-        products = products.filter(p => p.id !== productId);
+        products = products.filter(p => p.productId !== productId);
         localStorage.setItem('products', JSON.stringify(products));
         loadProducts();
     }

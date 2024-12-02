@@ -2,7 +2,6 @@ initProduct();
 checkLogin2();
 
 
-
 function currency(price) {
     return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 }
