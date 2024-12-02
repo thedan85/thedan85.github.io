@@ -212,8 +212,8 @@ function loadProducts() {
             <td>${product.price}</td>
             <td><img src="${product.image}" alt="${product.name}" width="50"></td>
             <td>
-                <button onclick="showEditProductForm(${product.id})">Sửa</button>
-                <button onclick="deleteProduct(${product.id})">Xóa</button>
+                <button onclick="showEditProductForm(${product.productId})">Sửa</button>
+                <button onclick="deleteProduct(${product.productId})">Xóa</button>
             </td>
         </tr>`;
     });
@@ -226,6 +226,14 @@ function showAddProductForm() {
         <form id="add-product-form">
             <label for="product_name">Tên sản phẩm:</label>
             <input type="text" id="product_name" name="product_name" required><br>
+
+            <select id="brand-select">
+            <option value="brand" selected>Chọn hãng sản phẩm</option>
+            <option value="casio">Casio</option>
+            <option value="citizen">Citizen</option>
+            <option value="rolex">Rolex</option>
+            <option value="timex">Timex</option>
+            </select><br>
 
             <label for="product_price">Giá:</label>
             <input type="number" id="product_price" name="product_price" required><br>
@@ -242,17 +250,18 @@ function showAddProductForm() {
 function addProductFromForm() {
     const name = document.getElementById('product_name').value;
     const price = document.getElementById('product_price').value;
+    const brand = document.getElementById('brand-select').value;
     const imageInput = document.getElementById('product_image');
     const image = imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : '';
 
 
-    if (name && price && image) {
-        addProduct(name, price, image);
+    if (name && price && image &&brand!='brand') {
+        addProduct(name, price, image,brand);
     }
 }
 
-function addProduct(name, price, image) {
-    products.push({ id: products.length + 1, name, price, img: image });
+function addProduct(name, price, image ,brand) {
+    products.push({ productId: products.length + 1,brandid:brand ,name, price, img: image });
     localStorage.setItem('products', JSON.stringify(products));
     loadProducts();
 }
@@ -272,7 +281,7 @@ function showEditProductForm(productId) {
                 <label for="edit_product_image">Hình ảnh:</label>
                 <input type="file" id="edit_product_image" name="edit_product_image" accept="image/*"><br>
 
-                <button type="button" onclick="editProductFromForm(${product.id})">Cập Nhật</button>
+                <button type="button" onclick="editProductFromForm(${product.productId})">Cập Nhật</button>
             </form>
         `;
         document.getElementById('product-list').innerHTML = formHtml;
@@ -583,7 +592,7 @@ function filterStatisticsByDate(startDate, endDate) {
         customerStats[order.username].orderCount += 1;
     });
 
-    let customerStatisticsHtml = '<h3>Thống kê khách hàng</h3><table><thead><tr><th>Khách hàng</th><th>Tổng doanh thu</th><th>Số đơn hàng</th><th>Hành động</th></tr></thead><tbody>';
+    let customerStatisticsHtml = '<h3>Thống kê khách hàng</h3><table><thead><tr><th>Khách hàng</th><th>Tổng </th><th>Số đơn hàng</th><th>Hành động</th></tr></thead><tbody>';
     Object.keys(customerStats).forEach(customerName => {
         const { totalRevenue, orderCount } = customerStats[customerName];
         customerStatisticsHtml += `<tr><td>${customerName}</td><td>${currency(totalRevenue)}</td><td>${orderCount}</td><td><button onclick="viewCustomerOrders('${customerName}')">Xem hóa đơn</button></td></tr>`;
